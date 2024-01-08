@@ -51,7 +51,7 @@ public class Avatar {
 		this.hairColor = hairColor;
 	}
 
-	// this method sets the avatars hair to whatever color passed through
+	// this method sets the avatar's hair to whatever color passed through
 	public void dyeBirthdayHair(String color) {
 		this.hairColor = color;
 		this.age += 1;
@@ -60,10 +60,9 @@ public class Avatar {
 	// to string method
 	@Override
 	public String toString() {
-		return "Avatar [name=" + name + ", age=" + age + ", gender=" + gender + ", hairColor=" + hairColor + "]";
+		return "Avatar [name=" + name + ", age=" + age + ", gender=" 
+	+ gender + "hairColor=" + hairColor + "]";
 	}
-	
-	
 	
 }
 
