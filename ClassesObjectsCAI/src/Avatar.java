@@ -1,7 +1,5 @@
 // AVATAR OBJECT TEMPLATE CLASS
 
-package tests;
-
 // class
 public class Avatar {
 	

@@ -1,5 +1,3 @@
-// this class is the skeleton for the education class (slide show like frame)
-package tests;
 
 // SEE IF YOU CAN CHANGE THE SLIDE USING THE KEYBOARD
 
@@ -10,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 // class
-public class SwitchPanelGUI extends JFrame implements ActionListener {
+public class EducationClass extends JFrame implements ActionListener {
 	
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -36,7 +34,7 @@ public class SwitchPanelGUI extends JFrame implements ActionListener {
 	
 	
 	// constructor
-	public SwitchPanelGUI() {
+	public EducationClass() {
 		
 		// set size of frame
 		setSize(1366, 766);
@@ -48,6 +46,7 @@ public class SwitchPanelGUI extends JFrame implements ActionListener {
 		mainPanel.setLayout(null);
 		add(mainPanel);
 		
+		// set up panel with JProgressBar
 		setTopPanel();
 
 		// initials panelArray method
@@ -66,8 +65,10 @@ public class SwitchPanelGUI extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	// this method sets ups and adds the JProgressBar and the panel above it
 	private void setTopPanel() {
 		
+		// set up blank panel
 		topPanel.setBounds(50, 50, 1166, 70);
 		topPanel.setBackground(Color.WHITE);
 		topPanel.setLayout(null);
@@ -116,12 +117,23 @@ public class SwitchPanelGUI extends JFrame implements ActionListener {
 	private void initializePanels() {
 		
 		// for loop for all panels, as they all have the same dimensions and locations
-		for (int index = 0; index<panelArray.length; index++) {
+		for (int index = 0; index < panelArray.length; index++) {
 			panelArray[index] = new JPanel();
 			panelArray[index].setBounds(50, 140, 1166, 566-130);
 			panelArray[index].setBackground(Color.WHITE);
 			panelArray[index].setLayout(null);
-		}		
+		}	
+		
+		firstSlide();
+	}
+
+	// set up first slide of education class
+	private void firstSlide() {
+		
+		JLabel textLabelOne = new JLabel("Let’s start by thinking, what is an object? Well, we can consider an object any person, place, or thing. All 3 of these have specific characteristics, and tasks that they can do.");
+		JLabel textLabelTwo = new JLabel("Let’s say our object is a car. A car will have characteristics such as its color, speed, and fuel capacity. A car can drive forwards, backwards, and change directions.");
+		JLabel textLabelThree = new JLabel("Let’s say our object is a beach. A beach will have characteristics such as weather, water salinity, and tourist rating. At the beach it can rain, or a beach may get crowded with tourists.");
+
 	}
 
 	// action listener for buttons
