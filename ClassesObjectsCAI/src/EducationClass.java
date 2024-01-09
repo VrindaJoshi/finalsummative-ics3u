@@ -81,7 +81,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// set up progress bar
 		progressBar.setValue(currentSlide);
-		progressBar.setForeground(GRAY);
+		progressBar.setForeground(Color.decode("#FFFFFF"));
 		progressBar.setBounds(50, 120, 1166, 20);
 		progressBar.setStringPainted(true); // show percent on progress bar
 		mainPanel.add(progressBar);
@@ -141,39 +141,88 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		fifthSlide();
 
+		sixthSlide();
+
+		seventhSlide();
+
 	}
 
-	private void fifthSlide() {
+	private void seventhSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"<html>Back on slide X, we learned that every instance of an object is familiar with its own instance variables. We are able to get and set the values of the instance variables, through the instance. To do so, we can use get methods, or set methods.\r\n"
+						+ "</html>");
+
+		JLabel textLabelTwo = new JLabel(
+				"<html>Look at the table below to learn more about get and set methods.<html>");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 1000, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[6].add(textLabelOne);
+
+		textLabelTwo.setBounds(50, 100, 1000, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[6].add(textLabelTwo);
+
+		// create + setup picture label
+		ImageIcon tableIcon = new ImageIcon("images/slideshow/slide7.png");
+		JLabel tableImg = new JLabel(
+				new ImageIcon(tableIcon.getImage()));
+
+		tableImg.setBounds(150, 125, 800, 290);
+		tableImg.setLayout(null);
+		panelArray[6].add(tableImg);
+	}
+
+	private void sixthSlide() {
 		// create text labels
 		JLabel textLabelOne = new JLabel("Let's look at the code that created your instance of Avatar!");
-		JLabel textLabelTwo = new JLabel(
-				"<html>If we break down the syntax of this line of code..\r\n<br>"
-				+ "\twe are declaring the data type of the variable as Avatar\r\n<br>"
-				+ "\tthe variable is called myAvatar\r\n<br>"
-				+ "\tmyAvatar is equal to an instance of the avatar class \r\n<br>"
-				+ "\tthe keyword new creates a new object of the class to the right (in this case, Avatar), by calling the object's constructor method.\r\n<br>"
-				+ "\tinside the brackets are the attributes of the object, called instance variables. These values are passed into the constructor method\r\n<br>"
+		JLabel textLabelTwo = new JLabel("<html>If we break down the syntax of this line of code..\r\n<br>"
+				+ "&bull we are declaring the data type of the variable as Avatar\r\n<br>"
+				+ "&bull the variable is called myAvatar\r\n<br>"
+				+ "&bull myAvatar is equal to an instance of the avatar class \r\n<br>"
+				+ "&bull the keyword new creates a new object of the class to the right (in this case, Avatar), by calling the object's constructor method.\r\n<br>"
+				+ "&bull inside the brackets are the attributes of the object, called instance variables. These values are passed into the constructor method\r\n<br>"
 				+ "<html>");
 
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
 		textLabelOne.setFont(Fonts.interRegularEDU);
-		panelArray[4].add(textLabelOne);
+		panelArray[5].add(textLabelOne);
 
 		// create + setup picture label
-		JLabel instanceImg = new JLabel(
-				new ImageIcon("images/slideshow/slide5.png"));
+		JLabel instanceImg = new JLabel(new ImageIcon("images/slideshow/slide5.png"));
 
-		instanceImg.setBounds(100, 125, 800, 125);
+		instanceImg.setBounds(100, 100, 800, 125);
 		instanceImg.setLayout(null);
-		panelArray[4].add(instanceImg);
+		panelArray[5].add(instanceImg);
 
-		textLabelTwo.setBounds(50, 100, 1000, 300);
+		textLabelTwo.setBounds(50, 150, 1000, 300);
 		textLabelTwo.setLayout(null);
 		textLabelTwo.setFont(Fonts.interRegularEDU);
-		panelArray[4].add(textLabelTwo);
+		panelArray[5].add(textLabelTwo);
 
+	}
+
+	private void fifthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"<html>Let's take a look at the code for the Avatar template class:\r<br><br><br>"
+						+ "&bull the first line creates the class\r\n<br>"
+						+ "&bull initialize all the instance variables\r\n<br>"
+						+ "&bull constructor method: constructs every instance of the Avatar class\r\n<br>"
+						+ "&bull get and set methods\r\n<br>"
+						+ "&bull to string method: method that summarizes every instance\r\n<br>" + "</html>");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 1000, 170);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[4].add(textLabelOne);
 
 	}
 
@@ -196,6 +245,8 @@ public class EducationClass extends JFrame implements ActionListener {
 		textLabelTwo.setFont(Fonts.interRegularEDU);
 		panelArray[3].add(textLabelTwo);
 
+		
+		// code is from https://docs.oracle.com/javase/tutorial/uiswing/components/editorpane.html
 		/*
 		 * // editor pane!! JEditorPane editorPane = new JEditorPane();
 		 * editorPane.setEditable(false); java.net.URL helpURL =
