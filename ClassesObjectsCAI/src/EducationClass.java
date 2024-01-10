@@ -22,7 +22,7 @@ public class EducationClass extends JFrame implements ActionListener {
 	static final Color GRAY = new Color(205, 205, 205);
 
 	// static variables
-	static JPanel[] panelArray = new JPanel[16]; // array of jpanels
+	static JPanel[] panelArray = new JPanel[17]; // array of jpanels
 	static int currentSlide = 0; // changing value of the current slide
 
 	private JPanel mainPanel = new JPanel();
@@ -145,6 +145,282 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		seventhSlide();
 
+		eighthSlide();
+
+		ninthSlide();
+
+		tenthSlide();
+
+		eleventhSlide();
+
+		twelthSlide();
+
+		thirteenthSlide();
+
+		fourteenthSlide();
+
+		fifteenthSlide();
+
+		sixteenthSlide();
+
+		seventeenthSlide();
+
+	}
+
+	private void seventeenthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"Congrats, that is how you create a template class! From here, you can add in methods, like the dyeBirthdayHair() method. ");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 1000, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[16].add(textLabelOne);
+
+	}
+
+	private void sixteenthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel("A new method will auto-generate!\r\n" + "");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 1000, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[15].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon instanceIcon = new ImageIcon("images/slideshow/slide15.png");
+		JLabel instanceImg = new JLabel(new ImageIcon(instanceIcon.getImage().getScaledInstance(1347/2, 122/2, java.awt.Image.SCALE_SMOOTH)));
+
+		instanceImg.setBounds(100, 100, 1347/2, 122/2);
+		instanceImg.setLayout(null);
+		panelArray[15].add(instanceImg);
+
+	}
+
+	private void fifteenthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"<html>Lastly, we will create a method that outputs a summary message for a specific instance. \r\n"
+						+ "\r\n"
+						+ "<br>Go to the menu bar at the top again, and press on \'Source > Generate toString()...\'</html>");
+		JLabel textLabelTwo = new JLabel("Press on Generate!\r\n" + "");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 600, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[14].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon methodIcon = new ImageIcon("images/slideshow/slide14.png");
+		JLabel methodImg = new JLabel(
+				new ImageIcon(methodIcon.getImage().getScaledInstance(834 / 3, 1065 / 3, java.awt.Image.SCALE_SMOOTH)));
+
+		methodImg.setBounds(650, 50, 834 / 3, 1065 / 3);
+		methodImg.setLayout(null);
+		panelArray[14].add(methodImg);
+
+		textLabelTwo.setBounds(50, 200, 500, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[14].add(textLabelTwo);
+
+	}
+
+	private void fourteenthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"Get methods and set methods will auto-generate for each of the fields.\r\n" + "");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 1000, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[13].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon instanceIcon = new ImageIcon("images/slideshow/slide13.png");
+		JLabel instanceImg = new JLabel(new ImageIcon(instanceIcon.getImage()));
+
+		instanceImg.setBounds(100, 100, 600, 224);
+		instanceImg.setLayout(null);
+		panelArray[13].add(instanceImg);
+
+	}
+
+	private void thirteenthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"Next, go to the menu bar at the top again, and press on \'Source > Generate Getters and Setters…\'");
+		JLabel textLabelTwo = new JLabel("Select all the fields, and press on Generate!\r\n" + "");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 600, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[12].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon methodIcon = new ImageIcon("images/slideshow/slide12.png");
+		JLabel methodImg = new JLabel(
+				new ImageIcon(methodIcon.getImage().getScaledInstance(834 / 3, 1065 / 3, java.awt.Image.SCALE_SMOOTH)));
+
+		methodImg.setBounds(650, 50, 834 / 3, 1065 / 3);
+		methodImg.setLayout(null);
+		panelArray[12].add(methodImg);
+
+		textLabelTwo.setBounds(50, 200, 500, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[12].add(textLabelTwo);
+
+	}
+
+	private void twelthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel("The constructor method will auto generate!");
+		JLabel textLabelTwo = new JLabel(
+				"This is the method that is called when you create a new instance of City.\r\n" + "");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 1000, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[11].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon instanceIcon = new ImageIcon("images/slideshow/slide11.png");
+		JLabel instanceImg = new JLabel(new ImageIcon(
+				instanceIcon.getImage().getScaledInstance(1168 / 2, 218 / 2, java.awt.Image.SCALE_SMOOTH)));
+
+		instanceImg.setBounds(100, 100, 1168 / 2, 218 / 2);
+		instanceImg.setLayout(null);
+		panelArray[11].add(instanceImg);
+
+		textLabelTwo.setBounds(50, 250, 1000, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[11].add(textLabelTwo);
+
+	}
+
+	private void eleventhSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"There isn’t much coding after this! Next, go to the menu bar at the top, and press on \'Source > Generate Constructor using Fields…\'");
+		JLabel textLabelTwo = new JLabel(
+				"This screen will pop up. Make sure all the fields are selected, and press Generate.");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 800, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[10].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon methodIcon = new ImageIcon("images/slideshow/slide10-2.png");
+		JLabel methodImg = new JLabel(
+				new ImageIcon(methodIcon.getImage().getScaledInstance(834 / 3, 1065 / 3, java.awt.Image.SCALE_SMOOTH)));
+
+		methodImg.setBounds(825, 50, 834 / 3, 1065 / 3);
+		methodImg.setLayout(null);
+		panelArray[10].add(methodImg);
+
+		textLabelTwo.setBounds(50, 200, 500, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[10].add(textLabelTwo);
+
+	}
+
+	private void tenthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"Let's initialize these attributes. The initialized variables in the template class are called fields.");
+		JLabel textLabelTwo = new JLabel("Feel free to add in any other attributes of a city that you can think of!");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 50, 600, 50);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[9].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon methodIcon = new ImageIcon("images/slideshow/slide9.png");
+		JLabel methodImg = new JLabel(new ImageIcon(methodIcon.getImage()));
+
+		methodImg.setBounds(50, 125, 600, 250);
+		methodImg.setLayout(null);
+		panelArray[9].add(methodImg);
+
+		textLabelTwo.setBounds(600, 400, 500, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[9].add(textLabelTwo);
+	}
+
+	private void ninthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"<html>Now that we know all about objects, " + "let's learn how to make a template class! "
+						+ "Open up your code editors, and create a new " + "class. Let’s make a class called City.\r\n"
+						+ "<br><br><br>What are some attributes of a city? You can "
+						+ "brainstorm your own, but some attributes " + "include: planet, continent, country, name, "
+						+ "and population.</html>");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 0, 400, 260);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[8].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon methodIcon = new ImageIcon("images/slideshow/slide8.png");
+		JLabel methodImg = new JLabel(
+				new ImageIcon(methodIcon.getImage().getScaledInstance(426, 453, java.awt.Image.SCALE_SMOOTH)));
+
+		methodImg.setBounds(500, 10, 500, 500);
+		methodImg.setLayout(null);
+		panelArray[8].add(methodImg);
+
+	}
+
+	private void eighthSlide() {
+		// create text labels
+		JLabel textLabelOne = new JLabel(
+				"<html>We have learned that objects are useful, as we can use get and set methods to access an instance’s attributes. But we can also make our object do other things! Let’s say I love to dye my hair on my birthday. I could type up code everytime I want to dye my hair a different color, but I could also create a method in the template class that automatically dyes my avatar’s hair everytime I call it, and also increases my age by 1.</html>");
+
+		JLabel textLabelTwo = new JLabel("<html>To call this method, you would write:<html>");
+
+		// set up text labels
+		textLabelOne.setBounds(50, 0, 250, 260);
+		textLabelOne.setLayout(null);
+		textLabelOne.setFont(Fonts.interRegularEDU);
+		panelArray[7].add(textLabelOne);
+
+		// create + setup picture label
+		ImageIcon methodIcon = new ImageIcon("images/slideshow/slide7-1.png");
+		JLabel methodImg = new JLabel(new ImageIcon(methodIcon.getImage()));
+
+		methodImg.setBounds(315, 10, 800, 290);
+		methodImg.setLayout(null);
+		panelArray[7].add(methodImg);
+
+		textLabelTwo.setBounds(350, 320, 1000, 50);
+		textLabelTwo.setLayout(null);
+		textLabelTwo.setFont(Fonts.interRegularEDU);
+		panelArray[7].add(textLabelTwo);
+
+		ImageIcon callMethodIcon = new ImageIcon("images/slideshow/slide7-2.png");
+		JLabel callMethodImg = new JLabel(new ImageIcon(callMethodIcon.getImage()));
+
+		callMethodImg.setBounds(400, 200, 800, 290);
+		callMethodImg.setLayout(null);
+		panelArray[7].add(callMethodImg);
+
 	}
 
 	private void seventhSlide() {
@@ -162,19 +438,19 @@ public class EducationClass extends JFrame implements ActionListener {
 		textLabelOne.setFont(Fonts.interRegularEDU);
 		panelArray[6].add(textLabelOne);
 
+		// create + setup picture label
+		ImageIcon tableIcon = new ImageIcon("images/slideshow/slide6.png");
+		JLabel tableImg = new JLabel(new ImageIcon(tableIcon.getImage()));
+
+		tableImg.setBounds(150, 125, 800, 290);
+		tableImg.setLayout(null);
+		panelArray[6].add(tableImg);
+
 		textLabelTwo.setBounds(50, 100, 1000, 50);
 		textLabelTwo.setLayout(null);
 		textLabelTwo.setFont(Fonts.interRegularEDU);
 		panelArray[6].add(textLabelTwo);
 
-		// create + setup picture label
-		ImageIcon tableIcon = new ImageIcon("images/slideshow/slide7.png");
-		JLabel tableImg = new JLabel(
-				new ImageIcon(tableIcon.getImage()));
-
-		tableImg.setBounds(150, 125, 800, 290);
-		tableImg.setLayout(null);
-		panelArray[6].add(tableImg);
 	}
 
 	private void sixthSlide() {
@@ -245,8 +521,8 @@ public class EducationClass extends JFrame implements ActionListener {
 		textLabelTwo.setFont(Fonts.interRegularEDU);
 		panelArray[3].add(textLabelTwo);
 
-		
-		// code is from https://docs.oracle.com/javase/tutorial/uiswing/components/editorpane.html
+		// code is from
+		// https://docs.oracle.com/javase/tutorial/uiswing/components/editorpane.html
 		/*
 		 * // editor pane!! JEditorPane editorPane = new JEditorPane();
 		 * editorPane.setEditable(false); java.net.URL helpURL =
@@ -308,7 +584,6 @@ public class EducationClass extends JFrame implements ActionListener {
 
 	}
 
-	// set up first slide of education class
 	private void firstSlide() {
 
 		// create text labels
@@ -377,7 +652,7 @@ public class EducationClass extends JFrame implements ActionListener {
 			buttonPanel.remove(backButton);
 
 		// add/remove next button based on if current slide is the last slide
-		if (currentSlide == panelArray.length - 1) {
+		if (currentSlide == panelArray.length-1) {
 			buttonPanel.remove(nextButton);
 			buttonPanel.add(finishButton); // add finish button
 		} else {
