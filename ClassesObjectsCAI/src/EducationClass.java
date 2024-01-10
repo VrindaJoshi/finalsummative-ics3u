@@ -2,11 +2,8 @@
 // SEE IF YOU CAN CHANGE THE SLIDE USING THE KEYBOARD
 
 // imports
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -23,6 +20,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 	// static variables
 	static JPanel[] panelArray = new JPanel[17]; // array of jpanels
+	static JInternalFrame  [] checkpointArray = new JInternalFrame [3]; // array of internal frames
 	static int currentSlide = 0; // changing value of the current slide
 
 	private JPanel mainPanel = new JPanel();
@@ -56,8 +54,8 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// initials panelArray method
 		initializePanels();
-
-		// show first panel
+		
+		//show first panel
 		mainPanel.add(panelArray[currentSlide]);
 
 		// initialize buttonPanel and contents
@@ -70,6 +68,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	
 	// this method sets ups and adds the JProgressBar and the panel above it
 	private void setTopPanel() {
 
@@ -81,7 +80,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// set up progress bar
 		progressBar.setValue(currentSlide);
-		progressBar.setForeground(Color.decode("#FFFFFF"));
+		progressBar.setForeground(BEIGE);
 		progressBar.setBounds(50, 120, 1166, 20);
 		progressBar.setStringPainted(true); // show percent on progress bar
 		mainPanel.add(progressBar);
