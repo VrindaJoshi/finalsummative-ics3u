@@ -1,9 +1,11 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class MainMenuClass extends JFrame {
+public class MainMenuClass extends JFrame implements ActionListener{
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -22,6 +24,8 @@ public class MainMenuClass extends JFrame {
 	private JPanel topPanel = new JPanel();
 	
 	private JButton nextStep = new JButton("create avatar");
+	
+	static boolean avatarCreated = false;
 
 	public MainMenuClass() {
 
@@ -55,6 +59,7 @@ public class MainMenuClass extends JFrame {
 		nextStep.setBounds(40, 616-125, 160, 75);
 		nextStep.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		nextStep.setBackground(BEIGE);
+		nextStep.addActionListener(this);
 		sidePanel.add(nextStep);
 		
 		circle.setBounds(25, 50, 200, 200);
@@ -86,5 +91,13 @@ public class MainMenuClass extends JFrame {
 		highlightedLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		topPanel.add(highlightedLabel);
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (avatarCreated == false) {
+			new AvatarBuilder();
+		}
+		
 	}
 }
