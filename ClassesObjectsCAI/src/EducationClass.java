@@ -5,11 +5,12 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.*;
 
 // class
-public class EducationClass extends JFrame implements ActionListener {
+public class EducationClass extends JFrame implements ActionListener, KeyListener {
 
 	// fonts
 	//
@@ -35,7 +36,7 @@ public class EducationClass extends JFrame implements ActionListener {
 	private JButton nextButton = new JButton(">"); // next button to go to next slide
 	private JButton backButton = new JButton("<"); // back button to go to previous slide
 	private JButton finishButton = new JButton("finish"); // finish button to end slideshow
-	
+
 	private boolean doneCheckpointOne = false;
 	private boolean doneCheckpointTwo = false;
 	private boolean doneCheckpointThree = false;
@@ -52,6 +53,9 @@ public class EducationClass extends JFrame implements ActionListener {
 		mainPanel.setBackground(BEIGE);
 		mainPanel.setLayout(null);
 		add(mainPanel);
+		
+		//
+		addKeyListener(this);
 
 		// set up panel with JProgressBar
 		setTopPanel();
@@ -502,6 +506,20 @@ public class EducationClass extends JFrame implements ActionListener {
 		textLabelOne.setLayout(null);
 		textLabelOne.setFont(Fonts.interRegularEDU);
 		panelArray[4].add(textLabelOne);
+		
+		JEditorPane pane = new JEditorPane();
+		JScrollPane scroll = new JScrollPane(pane);
+		URL url = EducationClass.class.getResource("AvatarClass.html");
+		
+		try {
+			pane.setPage(url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		scroll.setBounds(460, 30, 600, 400);
+		panelArray[4].add(scroll);
 
 	}
 
@@ -512,7 +530,11 @@ public class EducationClass extends JFrame implements ActionListener {
 				"What is the Avatar class? The Avatar class is the template, or blueprint for all instances of Avatar.");
 		JLabel textLabelTwo = new JLabel(
 				"<html>The coder of the Avatar class engineered all Avatars to have a name, an age, a gender, and a hair color. These attributes are called instance variables. Every instance of Avatar is familiar with its own instance variables. "
-				+ "Your avatar has its own unique values for its instance variables: it\'s name is "+ AvatarBuilder.userAvatar.getName() +", it\'s age is "+ AvatarBuilder.userAvatar.getAge() +", it\'s gender is "+ AvatarBuilder.userAvatar.getGender().toLowerCase() +", and it\'s hair color is "+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() +". </html>");
+						+ "Your avatar has its own unique values for its instance variables: it\'s name is "
+						+ AvatarBuilder.userAvatar.getName() + ", it\'s age is " + AvatarBuilder.userAvatar.getAge()
+						+ ", it\'s gender is " + AvatarBuilder.userAvatar.getGender().toLowerCase()
+						+ ", and it\'s hair color is " + AvatarBuilder.userAvatar.getHairColor().toLowerCase()
+						+ ". </html>");
 
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
@@ -631,36 +653,28 @@ public class EducationClass extends JFrame implements ActionListener {
 			currentSlide++;
 		else if (e.getSource() == backButton)
 			currentSlide--;
-		
+
+		changeSlide();
+
+	}
+
+	private void changeSlide() {
+
 		if (currentSlide == 6 && doneCheckpointOne == false) {
-			JOptionPane.showInputDialog(
-                    mainPanel,
-                    "Create a friend for your avatar! Your avatar’s friend is Sally, a 18 year old girl with black hair. (name the instance sallyAvatar)\r\n"
-                    + "\r\n"
-                    + "",
-                    "Checkpoint 1",
-                    JOptionPane.PLAIN_MESSAGE);
-			JOptionPane.showMessageDialog(
-                    mainPanel,
-                    "ANSWER: Avatar sallyAvatar = new Avatar(“Sally”, 18, “Female”, “Black”);\r\n"
-                    + "",
-                    "Checkpoint 1",
-                    JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showInputDialog(mainPanel,
+					"Create a friend for your avatar! Your avatar’s friend is Sally, a 18 year old girl with black hair. (name the instance sallyAvatar)\r\n"
+							+ "\r\n" + "",
+					"Checkpoint 1", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(mainPanel,
+					"ANSWER: Avatar sallyAvatar = new Avatar(“Sally”, 18, “Female”, “Black”);\r\n" + "", "Checkpoint 1",
+					JOptionPane.PLAIN_MESSAGE);
 			doneCheckpointOne = true;
-		}
-		else if (currentSlide == 7 && doneCheckpointTwo == false) {
-			JOptionPane.showInputDialog(
-                    mainPanel,
-                    "It’s your avatar’s birthday! Your avatar got one year older! Change your avatar’s age so it is correct. (hint: use both get and set methods in your answer)",
-                    "Checkpoint 2",
-                    JOptionPane.PLAIN_MESSAGE);
-			JOptionPane.showMessageDialog(
-                    mainPanel,
-                    "ANSWER: myAvatar.setAge(myAvatar.getAge()+1);\r\n"
-                    + ""
-                    + "",
-                    "Checkpoint 2",
-                    JOptionPane.PLAIN_MESSAGE);
+		} else if (currentSlide == 7 && doneCheckpointTwo == false) {
+			JOptionPane.showInputDialog(mainPanel,
+					"It’s your avatar’s birthday! Your avatar got one year older! Change your avatar’s age so it is correct. (hint: use both get and set methods in your answer)",
+					"Checkpoint 2", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(mainPanel, "ANSWER: myAvatar.setAge(myAvatar.getAge()+1);\r\n" + "" + "",
+					"Checkpoint 2", JOptionPane.PLAIN_MESSAGE);
 			doneCheckpointTwo = true;
 		}
 
@@ -685,6 +699,39 @@ public class EducationClass extends JFrame implements ActionListener {
 		// make changes to frame
 		revalidate();
 		repaint();
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent key) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent key) {
+		
+		System.out.println("h");
+
+		int keyChange = key.getKeyCode() - 37;
+
+		if (keyChange == 0) {
+			mainPanel.remove(panelArray[currentSlide]);
+			currentSlide++;
+			System.out.println("right");
+			changeSlide();
+		}
+		else if (keyChange == 2) {
+			mainPanel.remove(panelArray[currentSlide]);
+			currentSlide--;
+			System.out.println("ledft");
+			changeSlide();
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 

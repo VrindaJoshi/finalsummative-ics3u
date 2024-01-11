@@ -96,6 +96,8 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		highlightedLabel.setBounds(50, 450, 700, 50);
 		highlightedLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		topPanel.add(highlightedLabel);
+		
+		
 
 	}
 

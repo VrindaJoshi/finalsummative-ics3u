@@ -34,7 +34,7 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 	
 	
 	private String[] genders = {"Select","Male","Female","Other"};
-	private String[] colors = {"Select","Brown","Blond","Red","Black"};
+	private String[] colors = {"Select","Brown","Blonde","Red","Black"};
 	
 	@SuppressWarnings("unchecked")
 	private JComboBox genderEntry = new JComboBox(genders);
@@ -116,14 +116,14 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 				
 		
-		if ((genderEntry.getSelectedItem() == "Select")|| (hairEntry.getSelectedItem() == "Select"))
-			JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!",  "Before we move on..", JOptionPane.WARNING_MESSAGE);
-		else {
+		//if ((genderEntry.getSelectedItem() == "Select")|| (hairEntry.getSelectedItem() == "Select"))
+			//JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!",  "Before we move on..", JOptionPane.WARNING_MESSAGE);
+		//else {
 			userAvatar = new Avatar(nameEntry.getText(), (int)ageEntry.getValue(), (String)genderEntry.getSelectedItem(),(String)hairEntry.getSelectedItem());
 			MainMenuClass.avatarCreated = true;
 			setVisible(false);
 			MainMenuClass.changeScreen();
-		}
+		//}
 
 	}
 
