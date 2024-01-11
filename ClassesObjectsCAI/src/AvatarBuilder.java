@@ -33,8 +33,8 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 	private ButtonGroup group = new ButtonGroup();
 	
 	
-	private String[] genders = {"Male","Female","Other"};
-	private String[] colors = {"Brown","Blond","Red","Black"};
+	private String[] genders = {"Select","Male","Female","Other"};
+	private String[] colors = {"Select","Brown","Blond","Red","Black"};
 	
 	@SuppressWarnings("unchecked")
 	private JComboBox genderEntry = new JComboBox(genders);
@@ -114,9 +114,9 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+				
 		
-		
-		if ((nameEntry.getText() == ""))
+		if ((genderEntry.getSelectedItem() == "Select")|| (hairEntry.getSelectedItem() == "Select"))
 			JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!",  "Before we move on..", JOptionPane.WARNING_MESSAGE);
 		else {
 			userAvatar = new Avatar(nameEntry.getText(), (int)ageEntry.getValue(), (String)genderEntry.getSelectedItem(),(String)hairEntry.getSelectedItem());

@@ -35,6 +35,10 @@ public class EducationClass extends JFrame implements ActionListener {
 	private JButton nextButton = new JButton(">"); // next button to go to next slide
 	private JButton backButton = new JButton("<"); // back button to go to previous slide
 	private JButton finishButton = new JButton("finish"); // finish button to end slideshow
+	
+	private boolean doneCheckpointOne = false;
+	private boolean doneCheckpointTwo = false;
+	private boolean doneCheckpointThree = false;
 
 	// constructor
 	public EducationClass() {
@@ -507,7 +511,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		JLabel textLabelOne = new JLabel(
 				"What is the Avatar class? The Avatar class is the template, or blueprint for all instances of Avatar.");
 		JLabel textLabelTwo = new JLabel(
-				"<html>The coder of the Avatar class engineered all Avatars to have a name, an age, a gender, and a hairColor. These attributes are called instance variables. Every instance of Avatar is familiar with its own instance variables. "
+				"<html>The coder of the Avatar class engineered all Avatars to have a name, an age, a gender, and a hair color. These attributes are called instance variables. Every instance of Avatar is familiar with its own instance variables. "
 				+ "Your avatar has its own unique values for its instance variables: it\'s name is "+ AvatarBuilder.userAvatar.getName() +", it\'s age is "+ AvatarBuilder.userAvatar.getAge() +", it\'s gender is "+ AvatarBuilder.userAvatar.getGender().toLowerCase() +", and it\'s hair color is "+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() +". </html>");
 
 		// set up text labels
@@ -627,6 +631,38 @@ public class EducationClass extends JFrame implements ActionListener {
 			currentSlide++;
 		else if (e.getSource() == backButton)
 			currentSlide--;
+		
+		if (currentSlide == 6 && doneCheckpointOne == false) {
+			JOptionPane.showInputDialog(
+                    mainPanel,
+                    "Create a friend for your avatar! Your avatar’s friend is Sally, a 18 year old girl with black hair. (name the instance sallyAvatar)\r\n"
+                    + "\r\n"
+                    + "",
+                    "Checkpoint 1",
+                    JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(
+                    mainPanel,
+                    "ANSWER: Avatar sallyAvatar = new Avatar(“Sally”, 18, “Female”, “Black”);\r\n"
+                    + "",
+                    "Checkpoint 1",
+                    JOptionPane.PLAIN_MESSAGE);
+			doneCheckpointOne = true;
+		}
+		else if (currentSlide == 7 && doneCheckpointTwo == false) {
+			JOptionPane.showInputDialog(
+                    mainPanel,
+                    "It’s your avatar’s birthday! Your avatar got one year older! Change your avatar’s age so it is correct. (hint: use both get and set methods in your answer)",
+                    "Checkpoint 2",
+                    JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(
+                    mainPanel,
+                    "ANSWER: myAvatar.setAge(myAvatar.getAge()+1);\r\n"
+                    + ""
+                    + "",
+                    "Checkpoint 2",
+                    JOptionPane.PLAIN_MESSAGE);
+			doneCheckpointTwo = true;
+		}
 
 		// add/remove back button based on if current slide is the first slide
 		if (currentSlide != 0) {
