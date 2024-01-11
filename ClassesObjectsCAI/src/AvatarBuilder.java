@@ -11,6 +11,9 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
 	static final Color GRAY = new Color(205, 205, 205);
+	
+	//static values
+	static Avatar userAvatar;
 
 	private JPanel mainPanel = new JPanel();
 
@@ -29,10 +32,12 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 	
 	private ButtonGroup group = new ButtonGroup();
 	
-	private JRadioButton[] genderEntry = new JRadioButton[3];
 	
+	private String[] genders = {"Male","Female","Other"};
 	private String[] colors = {"Brown","Blond","Red","Black"};
 	
+	@SuppressWarnings("unchecked")
+	private JComboBox genderEntry = new JComboBox(genders);
 	@SuppressWarnings("unchecked")
 	private JComboBox hairEntry = new JComboBox(colors);
 	
@@ -50,20 +55,11 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 		mainPanel.setLayout(null);
 		add(mainPanel);
 		
-		initializeArrays();
 
 		setTopPanel();
 
 		setLocationRelativeTo(null); // sets pop-up in center of screen
 		setVisible(true);
-	}
-
-	private void initializeArrays() {
-		
-		genderEntry[0] = new JRadioButton("male");
-		genderEntry[1] = new JRadioButton("female");
-		genderEntry[2] = new JRadioButton("other");
-		
 	}
 
 	private void setTopPanel() {
@@ -102,13 +98,10 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 		ageEntry.setBorder(BorderFactory.createLineBorder(Color.black));
 		topPanel.add(ageEntry);
 		
-		for(int index = 0; index < genderEntry.length; index++) {
-			group.add(genderEntry[index]);
-			genderEntry[index].setBounds(160+(index*80), 245, 80, 25);
-			genderEntry[index].setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			genderEntry[index].setBackground(Color.WHITE);
-			topPanel.add(genderEntry[index]);
-		}
+		genderEntry.setBounds(160, 245, 70, 25);
+		genderEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		genderEntry.setBorder(BorderFactory.createLineBorder(Color.black));
+		topPanel.add(genderEntry);
 		
 		hairEntry.setBounds(160, 290, 70, 25);
 		hairEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -121,9 +114,12 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if ((group.getSelection() == null) || (nameEntry.getText() == null))
+		
+		
+		if ((nameEntry.getText() == ""))
 			JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!",  "Before we move on..", JOptionPane.WARNING_MESSAGE);
 		else {
+			userAvatar = new Avatar(nameEntry.getText(), (int)ageEntry.getValue(), (String)genderEntry.getSelectedItem(),(String)hairEntry.getSelectedItem());
 			MainMenuClass.avatarCreated = true;
 			setVisible(false);
 			MainMenuClass.changeScreen();

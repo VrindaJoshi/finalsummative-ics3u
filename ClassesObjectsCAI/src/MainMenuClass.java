@@ -11,19 +11,21 @@ public class MainMenuClass extends JFrame implements ActionListener{
 	static final Color BEIGE = new Color(227, 228, 219);
 	static final Color GRAY = new Color(205, 205, 205);
 
-	private JPanel mainPanel = new JPanel();
-	private JPanel sidePanel = new JPanel();
+	static JPanel mainPanel = new JPanel();
+	static JPanel sidePanel = new JPanel();
 
-	private JLabel welcomeLabel = new JLabel("welcome");
+	static JLabel welcomeLabel = new JLabel("welcome");
 	private JLabel textLabel = new JLabel(
 			"<html>In this CAI (Computer-Assisted Instruction) application, you will learn all about classes and objects. In the past, we have learned about data types such as String, int, double, and boolean, but now you will be able to create and use your own data type (an object)! You will explore the concept of Object-Oriented Programming (OOP), and how using objects in your code will be very useful. You will be learning many new terms, and you can access a glossary through the menu bar at the top.</html>");
-	private JLabel highlightedLabel = new JLabel("before we get started, create your avatar!");
+	static JLabel highlightedLabel = new JLabel("before we get started, create your avatar!");
 
 	private ImageIcon circleIcon = new ImageIcon("images/blank.png");
 	private JLabel circle = new JLabel(new ImageIcon(circleIcon.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 	private JPanel topPanel = new JPanel();
 	
-	private JButton nextStep = new JButton("create avatar");
+	static JButton nextStep = new JButton("create avatar");
+	
+	static JLabel avatarInfo = new JLabel("");
 	
 	static boolean avatarCreated = false;
 
@@ -62,6 +64,10 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		nextStep.addActionListener(this);
 		sidePanel.add(nextStep);
 		
+		avatarInfo.setBounds(40, 210, 200, 200);
+		avatarInfo.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		sidePanel.add(avatarInfo);
+		
 		circle.setBounds(25, 50, 200, 200);
 		sidePanel.add(circle);
 
@@ -77,7 +83,7 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		mainPanel.add(topPanel);
 
 		// set title
-		welcomeLabel.setBounds(50, 60, 500, 100);
+		welcomeLabel.setBounds(50, 60, 1000, 100);
 		welcomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 100));
 		topPanel.add(welcomeLabel);
 
@@ -97,12 +103,30 @@ public class MainMenuClass extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (avatarCreated == false) {
 			new AvatarBuilder();
+		} else {
+			new EducationClass();
 		}
 		
 	}
 
 	public static void changeScreen() {
-		// TODO Auto-generated method stub
 		
+		changeScreenValues();
+		
+	}
+
+	private static void changeScreenValues() {
+		
+		String titletext = "welcome, "+ AvatarBuilder.userAvatar.getName().toLowerCase();
+		
+		welcomeLabel.setText(titletext);
+		highlightedLabel.setText("let’s start learning!");
+		nextStep.setText("start learning");
+		
+		avatarInfo.setText("<html>name: "+ AvatarBuilder.userAvatar.getName() + "<br>age: "+ AvatarBuilder.userAvatar.getAge() + 
+				"<br>gender: "+ AvatarBuilder.userAvatar.getGender().toLowerCase() + "<br>hair color: "+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() + "</html>");
+		
+		
+	
 	}
 }

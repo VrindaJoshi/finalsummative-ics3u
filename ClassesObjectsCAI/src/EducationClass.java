@@ -507,7 +507,8 @@ public class EducationClass extends JFrame implements ActionListener {
 		JLabel textLabelOne = new JLabel(
 				"What is the Avatar class? The Avatar class is the template, or blueprint for all instances of Avatar.");
 		JLabel textLabelTwo = new JLabel(
-				"<html>The coder of the Avatar class engineered all Avatars to have a name, an age, a gender, and a hairColor. These attributes are called instance variables. Every instance of Avatar is familiar with its own instance variables. Your avatar has its own unique values for its instance variables: its name is x, its age is x, its gender is x, and its hair color is x. </html>");
+				"<html>The coder of the Avatar class engineered all Avatars to have a name, an age, a gender, and a hairColor. These attributes are called instance variables. Every instance of Avatar is familiar with its own instance variables. "
+				+ "Your avatar has its own unique values for its instance variables: it\'s name is "+ AvatarBuilder.userAvatar.getName() +", it\'s age is "+ AvatarBuilder.userAvatar.getAge() +", it\'s gender is "+ AvatarBuilder.userAvatar.getGender().toLowerCase() +", and it\'s hair color is "+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() +". </html>");
 
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
