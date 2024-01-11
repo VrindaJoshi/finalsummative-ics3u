@@ -20,7 +20,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 	// static variables
 	static JPanel[] panelArray = new JPanel[17]; // array of jpanels
-	static JInternalFrame  [] checkpointArray = new JInternalFrame [3]; // array of internal frames
+	static JInternalFrame[] checkpointArray = new JInternalFrame[3]; // array of internal frames
 	static int currentSlide = 0; // changing value of the current slide
 
 	private JPanel mainPanel = new JPanel();
@@ -54,8 +54,8 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// initials panelArray method
 		initializePanels();
-		
-		//show first panel
+
+		// show first panel
 		mainPanel.add(panelArray[currentSlide]);
 
 		// initialize buttonPanel and contents
@@ -68,7 +68,6 @@ public class EducationClass extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	
 	// this method sets ups and adds the JProgressBar and the panel above it
 	private void setTopPanel() {
 
@@ -191,9 +190,10 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// create + setup picture label
 		ImageIcon instanceIcon = new ImageIcon("images/slideshow/slide15.png");
-		JLabel instanceImg = new JLabel(new ImageIcon(instanceIcon.getImage().getScaledInstance(1347/2, 122/2, java.awt.Image.SCALE_SMOOTH)));
+		JLabel instanceImg = new JLabel(new ImageIcon(
+				instanceIcon.getImage().getScaledInstance(1347 / 2, 122 / 2, java.awt.Image.SCALE_SMOOTH)));
 
-		instanceImg.setBounds(100, 100, 1347/2, 122/2);
+		instanceImg.setBounds(100, 100, 1347 / 2, 122 / 2);
 		instanceImg.setLayout(null);
 		panelArray[15].add(instanceImg);
 
@@ -520,23 +520,6 @@ public class EducationClass extends JFrame implements ActionListener {
 		textLabelTwo.setFont(Fonts.interRegularEDU);
 		panelArray[3].add(textLabelTwo);
 
-		// code is from
-		// https://docs.oracle.com/javase/tutorial/uiswing/components/editorpane.html
-		/*
-		 * // editor pane!! JEditorPane editorPane = new JEditorPane();
-		 * editorPane.setEditable(false); java.net.URL helpURL =
-		 * EducationClass.class.getResource( "AvatarClass.html"); if (helpURL != null) {
-		 * try { editorPane.setPage(helpURL); } catch (IOException e) {
-		 * System.err.println("Attempted to read a bad URL: " + helpURL); } } else {
-		 * System.err.println("Couldn't find file: AvatarClass.html"); }
-		 * 
-		 * //Put the editor pane in a scroll pane. JScrollPane editorScrollPane = new
-		 * JScrollPane(editorPane); editorScrollPane.setVerticalScrollBarPolicy(
-		 * JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); editorScrollPane.setPreferredSize(new
-		 * Dimension(250, 145)); editorScrollPane.setMinimumSize(new Dimension(10, 10));
-		 * 
-		 * panelArray[3].add(editorPane);
-		 */
 	}
 
 	private void thirdSlide() {
@@ -651,7 +634,7 @@ public class EducationClass extends JFrame implements ActionListener {
 			buttonPanel.remove(backButton);
 
 		// add/remove next button based on if current slide is the last slide
-		if (currentSlide == panelArray.length-1) {
+		if (currentSlide == panelArray.length - 1) {
 			buttonPanel.remove(nextButton);
 			buttonPanel.add(finishButton); // add finish button
 		} else {

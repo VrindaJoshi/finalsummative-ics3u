@@ -19,7 +19,7 @@ public class MainMenuClass extends JFrame implements ActionListener{
 			"<html>In this CAI (Computer-Assisted Instruction) application, you will learn all about classes and objects. In the past, we have learned about data types such as String, int, double, and boolean, but now you will be able to create and use your own data type (an object)! You will explore the concept of Object-Oriented Programming (OOP), and how using objects in your code will be very useful. You will be learning many new terms, and you can access a glossary through the menu bar at the top.</html>");
 	private JLabel highlightedLabel = new JLabel("before we get started, create your avatar!");
 
-	private ImageIcon circleIcon = new ImageIcon("images/browncircle.png");
+	private ImageIcon circleIcon = new ImageIcon("images/blank.png");
 	private JLabel circle = new JLabel(new ImageIcon(circleIcon.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 	private JPanel topPanel = new JPanel();
 	
@@ -58,7 +58,7 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		
 		nextStep.setBounds(40, 616-125, 160, 75);
 		nextStep.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		nextStep.setBackground(BEIGE);
+		nextStep.setBackground(GRAY);
 		nextStep.addActionListener(this);
 		sidePanel.add(nextStep);
 		
@@ -98,6 +98,11 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		if (avatarCreated == false) {
 			new AvatarBuilder();
 		}
+		
+	}
+
+	public static void changeScreen() {
+		// TODO Auto-generated method stub
 		
 	}
 }
