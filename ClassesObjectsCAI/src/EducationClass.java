@@ -10,7 +10,7 @@ import java.net.URL;
 import javax.swing.*;
 
 // class
-public class EducationClass extends JFrame implements ActionListener, KeyListener {
+public class EducationClass extends JFrame implements ActionListener {
 
 	// fonts
 	//
@@ -54,9 +54,6 @@ public class EducationClass extends JFrame implements ActionListener, KeyListene
 		mainPanel.setLayout(null);
 		add(mainPanel);
 		
-		//
-		addKeyListener(this);
-
 		// set up panel with JProgressBar
 		setTopPanel();
 
@@ -642,6 +639,7 @@ public class EducationClass extends JFrame implements ActionListener, KeyListene
 
 		// check if button is finish button
 		if (e.getSource() == finishButton) {
+			new QuizClass();
 			dispose(); // close frame
 		}
 
@@ -659,7 +657,7 @@ public class EducationClass extends JFrame implements ActionListener, KeyListene
 	}
 
 	private void changeSlide() {
-
+		
 		if (currentSlide == 6 && doneCheckpointOne == false) {
 			JOptionPane.showInputDialog(mainPanel,
 					"Create a friend for your avatar! Your avatar’s friend is Sally, a 18 year old girl with black hair. (name the instance sallyAvatar)\r\n"
@@ -699,39 +697,6 @@ public class EducationClass extends JFrame implements ActionListener, KeyListene
 		// make changes to frame
 		revalidate();
 		repaint();
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent key) {
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent key) {
-		
-		System.out.println("h");
-
-		int keyChange = key.getKeyCode() - 37;
-
-		if (keyChange == 0) {
-			mainPanel.remove(panelArray[currentSlide]);
-			currentSlide++;
-			System.out.println("right");
-			changeSlide();
-		}
-		else if (keyChange == 2) {
-			mainPanel.remove(panelArray[currentSlide]);
-			currentSlide--;
-			System.out.println("ledft");
-			changeSlide();
-		}
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

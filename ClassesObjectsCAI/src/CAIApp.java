@@ -2,8 +2,9 @@
 public class CAIApp {
 	
 	public static void main(String[] args) {
-		
-		new MainMenuClass();
+				
+		//new MainMenuClass();
+		new QuizClass();
 	}
 
 }

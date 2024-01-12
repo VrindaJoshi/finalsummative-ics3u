@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class MainMenuClass extends JFrame implements ActionListener{
+public class MainMenuClass extends JFrame implements ActionListener {
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -20,13 +20,16 @@ public class MainMenuClass extends JFrame implements ActionListener{
 	static JLabel highlightedLabel = new JLabel("before we get started, create your avatar!");
 
 	private ImageIcon circleIcon = new ImageIcon("images/blank.png");
-	private JLabel circle = new JLabel(new ImageIcon(circleIcon.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+	private JLabel circle = new JLabel(
+			new ImageIcon(circleIcon.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 	private JPanel topPanel = new JPanel();
-	
+
 	static JButton nextStep = new JButton("create avatar");
-	
+
 	static JLabel avatarInfo = new JLabel("");
-	
+
+	static String hairPNG = "";
+
 	static boolean avatarCreated = false;
 
 	public MainMenuClass() {
@@ -57,17 +60,17 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		sidePanel.setLayout(null);
 		mainPanel.add(sidePanel);
-		
-		nextStep.setBounds(40, 616-125, 160, 75);
+
+		nextStep.setBounds(40, 616 - 125, 160, 75);
 		nextStep.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		nextStep.setBackground(GRAY);
 		nextStep.addActionListener(this);
 		sidePanel.add(nextStep);
-		
+
 		avatarInfo.setBounds(40, 210, 200, 200);
 		avatarInfo.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		sidePanel.add(avatarInfo);
-		
+
 		circle.setBounds(25, 50, 200, 200);
 		sidePanel.add(circle);
 
@@ -96,8 +99,6 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		highlightedLabel.setBounds(50, 450, 700, 50);
 		highlightedLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		topPanel.add(highlightedLabel);
-		
-		
 
 	}
 
@@ -108,27 +109,62 @@ public class MainMenuClass extends JFrame implements ActionListener{
 		} else {
 			new EducationClass();
 		}
-		
+
 	}
 
 	public static void changeScreen() {
-		
+
 		changeScreenValues();
-		
+
 	}
 
 	private static void changeScreenValues() {
-		
-		String titletext = "welcome, "+ AvatarBuilder.userAvatar.getName().toLowerCase();
-		
+
+		chooseHairImage();
+
+		JLabel hairImg = new JLabel(new ImageIcon(
+				new ImageIcon(hairPNG).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+		JLabel faceImg = new JLabel(new ImageIcon(
+				new ImageIcon("images/avatar/blankFace.png").getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+
+		String titletext = "welcome, " + AvatarBuilder.userAvatar.getName().toLowerCase();
+
 		welcomeLabel.setText(titletext);
 		highlightedLabel.setText("let’s start learning!");
 		nextStep.setText("start learning");
+
+		avatarInfo.setText(
+				"<html>name: " + AvatarBuilder.userAvatar.getName() + "<br>age: " + AvatarBuilder.userAvatar.getAge()
+						+ "<br>gender: " + AvatarBuilder.userAvatar.getGender().toLowerCase() + "<br>hair color: "
+						+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() + "</html>");
 		
-		avatarInfo.setText("<html>name: "+ AvatarBuilder.userAvatar.getName() + "<br>age: "+ AvatarBuilder.userAvatar.getAge() + 
-				"<br>gender: "+ AvatarBuilder.userAvatar.getGender().toLowerCase() + "<br>hair color: "+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() + "</html>");
+		hairImg.setBounds(25, 50, 200, 200);
+		sidePanel.add(hairImg);
 		
-		
-	
+		faceImg.setBounds(25, 50, 200, 200);
+		sidePanel.add(faceImg);
+
+	}
+
+	private static void chooseHairImage() {
+
+		if (AvatarBuilder.userAvatar.getGender() == "Male" || AvatarBuilder.userAvatar.getGender() == "Other") {
+
+			if (AvatarBuilder.userAvatar.getHairColor() == "Brown") {
+				hairPNG = "images/avatar/maleBrownHair.png";
+			} else if (AvatarBuilder.userAvatar.getHairColor() == "Blonde") {
+				hairPNG = "images/avatar/maleBlondeHair.png";
+			}
+
+		} else {
+
+			if (AvatarBuilder.userAvatar.getHairColor() == "Brown") {
+				hairPNG = "images/avatar/femaleBrownHair.png";
+			} else if (AvatarBuilder.userAvatar.getHairColor() == "Blonde") {
+				hairPNG = "images/avatar/femaleBlondeHair.png";
+			}
+
+		}
+
 	}
 }
