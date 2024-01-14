@@ -9,7 +9,6 @@ import javax.swing.*;
 
 public class QuizClass extends JFrame implements ActionListener {
 	
-
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
 	static final Color GRAY = new Color(205, 205, 205);
@@ -29,18 +28,15 @@ public class QuizClass extends JFrame implements ActionListener {
 	private JScrollPane scroll = new JScrollPane(questionsPanel);
 
 	int numQuestions = 10;
-	
 	private String[] questionsArray = new String[numQuestions];
-
 	private JPanel[] questionPanelArray = new JPanel[numQuestions];
 	
-	private int minutes = 10;
-	private int seconds = 00;
-	private int timeLeft = minutes*1000*60;
-	
-	private JLabel timerLabel = new JLabel(minutes+":0"+seconds);
-	
+	// timer related variables
+	private int[] timeArray = {10, 0, 10*1000*60 }; // minutes, seconds, time left
+	private JLabel timerLabel = new JLabel(timeArray[0]+":0"+timeArray[1]);
 	static Timer timer;
+	
+	private JButton finishQuiz = new JButton("submit");
 			
 	public QuizClass() {		
 
@@ -61,19 +57,20 @@ public class QuizClass extends JFrame implements ActionListener {
 		setLayout(null);
 		setVisible(true);
 		
+		// modified the code from https://www.youtube.com/watch?v=0cATENiMsBE to create a countdown
 		timer = new Timer (1000, new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				timeLeft-=1000;
+				timeArray[2]-=1000;
 				
-				minutes = (timeLeft/60000)%60;
-				seconds = (timeLeft/1000)%60;
+				timeArray[0] = (timeArray[2]/60000)%60;
+				timeArray[1] = (timeArray[2]/1000)%60;
 				
-				if (seconds < 10)
-					timerLabel.setText(minutes+":0"+seconds);
+				if (timeArray[1] < 10)
+					timerLabel.setText(timeArray[0]+":0"+timeArray[1]);
 				else
-					timerLabel.setText(minutes+":"+seconds);
+					timerLabel.setText(timeArray[0]+":"+timeArray[1]);
 			}
 		});
 
@@ -156,7 +153,7 @@ public class QuizClass extends JFrame implements ActionListener {
 		titleLabel.setLayout(null);
 		topPanelTwo.add(titleLabel);
 		
-		timerLabel.setBounds(1000, 70, 100, 40);
+		timerLabel.setBounds(800, 70, 100, 40);
 		timerLabel.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		timerLabel.setLayout(null);
 		topPanelTwo.add(timerLabel);
@@ -166,13 +163,17 @@ public class QuizClass extends JFrame implements ActionListener {
 
 		scroll.setBounds(0, 175, 1166, 442);
 		topPanelTwo.add(scroll);
+		
+		finishQuiz.setBounds(950, 50, 160, 75);
+		finishQuiz.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		finishQuiz.setBackground(GRAY);
+		finishQuiz.addActionListener(this);
+		topPanelTwo.add(finishQuiz);
 
 		mainPanel.add(topPanelTwo);
 
 	}
 	
-	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -184,6 +185,13 @@ public class QuizClass extends JFrame implements ActionListener {
 
 			revalidate();
 			repaint();
+		}
+		else if (e.getSource() == finishQuiz) {
+			//grade quiz
+			//if passed
+			new CertificateClass();
+			dispose();
+			
 		}
 
 	}

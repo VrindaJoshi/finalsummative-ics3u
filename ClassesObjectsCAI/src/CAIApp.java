@@ -3,8 +3,8 @@ public class CAIApp {
 	
 	public static void main(String[] args) {
 				
-		//new MainMenuClass();
-		new QuizClass();
+		new MainMenuClass();
+		//new CertificateClass();
 	}
 
 }
