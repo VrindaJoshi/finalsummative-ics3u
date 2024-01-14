@@ -3,10 +3,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.*;
 
 public class QuizClass extends JFrame implements ActionListener {
+	
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -27,19 +29,20 @@ public class QuizClass extends JFrame implements ActionListener {
 	private JScrollPane scroll = new JScrollPane(questionsPanel);
 
 	int numQuestions = 10;
-
-	private String[] questionsArray = new String[numQuestions];
-	private Timer timer = new Timer(600000, this);
 	
-	private JLabel timerLabel = new JLabel(""+timer.getDelay());
+	private String[] questionsArray = new String[numQuestions];
 
 	private JPanel[] questionPanelArray = new JPanel[numQuestions];
 	
+	private int minutes = 10;
+	private int seconds = 00;
+	private int timeLeft = minutes*1000*60;
 	
-
-	public QuizClass() {
-		
-		timer.start();
+	private JLabel timerLabel = new JLabel(minutes+":0"+seconds);
+	
+	static Timer timer;
+			
+	public QuizClass() {		
 
 		setSize(1366, 766);
 
@@ -57,6 +60,22 @@ public class QuizClass extends JFrame implements ActionListener {
 
 		setLayout(null);
 		setVisible(true);
+		
+		timer = new Timer (1000, new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				timeLeft-=1000;
+				
+				minutes = (timeLeft/60000)%60;
+				seconds = (timeLeft/1000)%60;
+				
+				if (seconds < 10)
+					timerLabel.setText(minutes+":0"+seconds);
+				else
+					timerLabel.setText(minutes+":"+seconds);
+			}
+		});
 
 	}
 
@@ -137,8 +156,8 @@ public class QuizClass extends JFrame implements ActionListener {
 		titleLabel.setLayout(null);
 		topPanelTwo.add(titleLabel);
 		
-		timerLabel.setBounds(800, 30, 500, 100);
-		timerLabel.setFont(new Font("Times New Roman", Font.PLAIN, 60));
+		timerLabel.setBounds(1000, 70, 100, 40);
+		timerLabel.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		timerLabel.setLayout(null);
 		topPanelTwo.add(timerLabel);
 
@@ -151,6 +170,8 @@ public class QuizClass extends JFrame implements ActionListener {
 		mainPanel.add(topPanelTwo);
 
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -158,6 +179,8 @@ public class QuizClass extends JFrame implements ActionListener {
 		if (e.getSource() == firstButton) {
 			mainPanel.remove(topPanelOne);
 			setSecondPanel();
+			
+			timer.start();
 
 			revalidate();
 			repaint();
