@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
-public class MainMenuClass extends JFrame implements ActionListener {
+public class MainMenuClass extends JFrame implements ActionListener, MenuListener {
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -19,8 +21,8 @@ public class MainMenuClass extends JFrame implements ActionListener {
 			"<html>In this CAI (Computer-Assisted Instruction) application, you will learn all about classes and objects. In the past, we have learned about data types such as String, int, double, and boolean, but now you will be able to create and use your own data type (an object)! You will explore the concept of Object-Oriented Programming (OOP), and how using objects in your code will be very useful. You will be learning many new terms, and you can access a glossary through the menu bar at the top.</html>");
 	static JLabel highlightedLabel = new JLabel("before we get started, create your avatar!");
 
-	private ImageIcon circleIcon = new ImageIcon("images/blank.png");
-	private JLabel circle = new JLabel(
+	private static ImageIcon circleIcon = new ImageIcon("images/blank.png");
+	private static JLabel circle = new JLabel(
 			new ImageIcon(circleIcon.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 	private JPanel topPanel = new JPanel();
 
@@ -30,7 +32,16 @@ public class MainMenuClass extends JFrame implements ActionListener {
 
 	static String hairPNG = "";
 
-	static boolean avatarCreated = false;
+	static JLabel avatarFace = new JLabel(new ImageIcon((new ImageIcon("images/avatar/blankFace.png")).getImage()
+			.getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH)));
+
+	static JLabel avatarHair = new JLabel(new ImageIcon(
+			(new ImageIcon(hairPNG)).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+
+	static JLabel hairImg = new JLabel(
+			new ImageIcon(new ImageIcon(hairPNG).getImage().getScaledInstance(195, 195, java.awt.Image.SCALE_SMOOTH)));
+	static JLabel faceImg = new JLabel(new ImageIcon(new ImageIcon("images/avatar/blankFace.png").getImage()
+			.getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH)));
 
 	public MainMenuClass() {
 
@@ -44,12 +55,88 @@ public class MainMenuClass extends JFrame implements ActionListener {
 		mainPanel.setLayout(null);
 		add(mainPanel);
 
+		setMenuBar();
+
+		setJMenuBar(MenuBar.MENUBAR);
+
 		// set up panel w content
 		setTopPanel();
 
 		setSidePanel();
 
 		setVisible(true);
+	}
+
+	private void setMenuBar() {
+
+		// menu bar - used like buttons
+
+		MenuBar.mEdu.addMenuListener(new MenuListener() {
+			@Override
+			public void menuSelected(MenuEvent e) {
+				System.out.println(CAIApp.avatarCreated);
+				if (CAIApp.avatarCreated == true) {
+					new EducationClass();
+					dispose();
+				} else
+					JOptionPane.showMessageDialog(topPanel, "Create your avatar to start learning!", "Before you move on..", JOptionPane.WARNING_MESSAGE);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+
+		MenuBar.mActivity.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				if (CAIApp.educationDone == true) {
+					new ActivityClass();
+					dispose();
+				} else
+					JOptionPane.showMessageDialog(topPanel, "Complete the lesson to play the game!", "Before you move on..", JOptionPane.WARNING_MESSAGE);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+		MenuBar.mQuiz.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				if (CAIApp.activityDone == true) {
+					new QuizClass();
+					dispose();
+				} else
+					JOptionPane.showMessageDialog(topPanel, "Complete the activty to take the quiz!", "Before you move on..", JOptionPane.WARNING_MESSAGE);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+
+		MenuBar.MENUBAR.add(MenuBar.mMenu);
+		MenuBar.MENUBAR.add(MenuBar.mEdu);
+		MenuBar.MENUBAR.add(MenuBar.mActivity);
+		MenuBar.MENUBAR.add(MenuBar.mQuiz);
+
 	}
 
 	private void setSidePanel() {
@@ -104,28 +191,25 @@ public class MainMenuClass extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (avatarCreated == false) {
+		if (CAIApp.avatarCreated == false) {
 			new AvatarBuilder();
 		} else {
 			new EducationClass();
+			dispose();
 		}
 
 	}
 
 	public static void changeScreen() {
 
-		changeScreenValues();
+		if (CAIApp.avatarCreated == true)
+			changeScreenValues();
 
 	}
 
 	private static void changeScreenValues() {
 
 		chooseHairImage();
-
-		JLabel hairImg = new JLabel(new ImageIcon(
-				new ImageIcon(hairPNG).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-		JLabel faceImg = new JLabel(new ImageIcon(
-				new ImageIcon("images/avatar/blankFace.png").getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
 
 		String titletext = "welcome, " + AvatarBuilder.userAvatar.getName().toLowerCase();
 
@@ -137,11 +221,10 @@ public class MainMenuClass extends JFrame implements ActionListener {
 				"<html>name: " + AvatarBuilder.userAvatar.getName() + "<br>age: " + AvatarBuilder.userAvatar.getAge()
 						+ "<br>gender: " + AvatarBuilder.userAvatar.getGender().toLowerCase() + "<br>hair color: "
 						+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() + "</html>");
-		
-		hairImg.setBounds(25, 50, 200, 200);
+
 		sidePanel.add(hairImg);
-		
-		faceImg.setBounds(25, 50, 200, 200);
+
+		faceImg.setBounds(20, 20, 200, 200);
 		sidePanel.add(faceImg);
 
 	}
@@ -156,15 +239,52 @@ public class MainMenuClass extends JFrame implements ActionListener {
 				hairPNG = "images/avatar/maleBlondeHair.png";
 			}
 
+			hairImg = new JLabel(new ImageIcon(
+					new ImageIcon(hairPNG).getImage().getScaledInstance(107, 107, java.awt.Image.SCALE_SMOOTH)));
+
+			hairImg.setBounds(27, 00, 200, 200);
+
 		} else {
+
+			int height = 50;
 
 			if (AvatarBuilder.userAvatar.getHairColor() == "Brown") {
 				hairPNG = "images/avatar/femaleBrownHair.png";
 			} else if (AvatarBuilder.userAvatar.getHairColor() == "Blonde") {
 				hairPNG = "images/avatar/femaleBlondeHair.png";
+				height = 60;
+
 			}
 
+			hairImg = new JLabel(new ImageIcon(
+					new ImageIcon(hairPNG).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+
+			hairImg.setBounds(25, height, 200, 200);
+
 		}
+
+		sidePanel.remove(circle);
+
+		sidePanel.revalidate();
+		sidePanel.repaint();
+
+	}
+
+	@Override
+	public void menuSelected(MenuEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void menuDeselected(MenuEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void menuCanceled(MenuEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 }

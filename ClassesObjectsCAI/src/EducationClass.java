@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 // class
 public class EducationClass extends JFrame implements ActionListener {
@@ -53,9 +55,13 @@ public class EducationClass extends JFrame implements ActionListener {
 		mainPanel.setBackground(BEIGE);
 		mainPanel.setLayout(null);
 		add(mainPanel);
-		
+
 		// set up panel with JProgressBar
 		setTopPanel();
+
+		setMenuBar();
+		setJMenuBar(MenuBar.MENUBAR);
+
 
 		// initials panelArray method
 		initializePanels();
@@ -71,6 +77,76 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// set frame to visible
 		setVisible(true);
+	}
+
+	private void setMenuBar() {
+
+		// menu bar - used like buttons
+
+		MenuBar.mMenu.addMenuListener(new MenuListener() {
+			@Override
+			public void menuSelected(MenuEvent e) {
+				new MainMenuClass();
+				dispose();
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+
+		MenuBar.mActivity.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				if (CAIApp.educationDone == true) {
+					new ActivityClass();
+					dispose();
+				} else
+					JOptionPane.showMessageDialog(topPanel, "Complete the lesson to play the game!",
+							"Before you move on..", JOptionPane.WARNING_MESSAGE);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+		MenuBar.mQuiz.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				if (CAIApp.activityDone == true) {
+					new QuizClass();
+					dispose();
+				} else
+					JOptionPane.showMessageDialog(topPanel, "Complete the activty to take the quiz!",
+							"Before you move on..", JOptionPane.WARNING_MESSAGE);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+
+		MenuBar.MENUBAR.add(MenuBar.mMenu);
+		MenuBar.MENUBAR.add(MenuBar.mEdu);
+		MenuBar.MENUBAR.add(MenuBar.mActivity);
+		MenuBar.MENUBAR.add(MenuBar.mQuiz);
+
 	}
 
 	// this method sets ups and adds the JProgressBar and the panel above it
@@ -503,18 +579,18 @@ public class EducationClass extends JFrame implements ActionListener {
 		textLabelOne.setLayout(null);
 		textLabelOne.setFont(Fonts.interRegularEDU);
 		panelArray[4].add(textLabelOne);
-		
+
 		JEditorPane pane = new JEditorPane();
 		JScrollPane scroll = new JScrollPane(pane);
 		URL url = EducationClass.class.getResource("AvatarClass.html");
-		
+
 		try {
 			pane.setPage(url);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		scroll.setBounds(460, 30, 600, 400);
 		panelArray[4].add(scroll);
 
@@ -657,7 +733,7 @@ public class EducationClass extends JFrame implements ActionListener {
 	}
 
 	private void changeSlide() {
-		
+
 		if (currentSlide == 6 && doneCheckpointOne == false) {
 			JOptionPane.showInputDialog(mainPanel,
 					"Create a friend for your avatar! Your avatar’s friend is Sally, a 18 year old girl with black hair. (name the instance sallyAvatar)\r\n"
