@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.*;
 
-public class AvatarBuilder extends JFrame implements ActionListener {
+public class AvatarBuilder extends JFrame implements ActionListener, ItemListener{
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -44,6 +47,18 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 	private ImageIcon circleIcon = new ImageIcon("images/blank.png");
 	private JLabel circle = new JLabel(new ImageIcon(circleIcon.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
 
+	static String hairPNG = "";
+
+	static JLabel avatarFace = new JLabel(new ImageIcon((new ImageIcon("images/avatar/blankFace.png")).getImage()
+			.getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH)));
+
+	static JLabel avatarHair = new JLabel(new ImageIcon(
+			(new ImageIcon(hairPNG)).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+
+	static JLabel hairImg = new JLabel(
+			new ImageIcon(new ImageIcon(hairPNG).getImage().getScaledInstance(195, 195, java.awt.Image.SCALE_SMOOTH)));
+	static JLabel faceImg = new JLabel(new ImageIcon(new ImageIcon("images/avatar/blankFace.png").getImage()
+			.getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH)));
 	
 	public AvatarBuilder() {
 
@@ -99,10 +114,38 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 		topPanel.add(ageEntry);
 		
 		genderEntry.setBounds(160, 245, 70, 25);
+		genderEntry.addItemListener(new ItemListener()
+	    {
+	        @Override
+	        public void itemStateChanged(ItemEvent e)
+	        {
+	            if(e.getID() == ItemEvent.ITEM_STATE_CHANGED)
+	            {
+	                if(e.getStateChange() == ItemEvent.SELECTED)
+	                {
+	                	chooseHairImage();
+	                }
+	            }
+	        }
+	    });
 		genderEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		genderEntry.setBorder(BorderFactory.createLineBorder(Color.black));
 		topPanel.add(genderEntry);
 		
+		hairEntry.addItemListener(new ItemListener()
+	    {
+	        @Override
+	        public void itemStateChanged(ItemEvent e)
+	        {
+	            if(e.getID() == ItemEvent.ITEM_STATE_CHANGED)
+	            {
+	                if(e.getStateChange() == ItemEvent.SELECTED)
+	                {
+	                	chooseHairImage();
+	                }
+	            }
+	        }
+	    });
 		hairEntry.setBounds(160, 290, 70, 25);
 		hairEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		hairEntry.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -111,10 +154,54 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 		circle.setBounds(450, 125, 150, 150);
 		topPanel.add(circle);
 	}
+	private void chooseHairImage() {
+		
+		topPanel.remove(hairImg);
+
+		if (genderEntry.getSelectedItem() == "Male" || genderEntry.getSelectedItem() == "Other") {
+
+			if (hairEntry.getSelectedItem() == "Brown") {
+				hairPNG = "images/avatar/maleBrownHair.png";
+			} else if (hairEntry.getSelectedItem() == "Blonde") {
+				hairPNG = "images/avatar/maleBlondeHair.png";
+			}
+
+			hairImg = new JLabel(new ImageIcon(
+					new ImageIcon(hairPNG).getImage().getScaledInstance(107, 107, java.awt.Image.SCALE_SMOOTH)));
+
+			hairImg.setBounds(457, 105-30, 150, 150);
+
+		} else {
+
+
+			if (hairEntry.getSelectedItem() == "Brown") {
+				hairPNG = "images/avatar/femaleBrownHair.png";
+			} else if (hairEntry.getSelectedItem() == "Blonde") {
+				hairPNG = "images/avatar/femaleBlondeHair.png";
+
+			}
+
+			hairImg = new JLabel(new ImageIcon(
+					new ImageIcon(hairPNG).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+
+			hairImg.setBounds(430, 135-30, 200, 200);
+
+		}
+
+		topPanel.remove(circle);
+		
+		topPanel.add(hairImg);
+
+		faceImg.setBounds(450, 125-30, 150, 150);
+		topPanel.add(faceImg);
+
+		topPanel.revalidate();
+		topPanel.repaint();
+
+	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-				
+	public void actionPerformed(ActionEvent e) {				
 		
 		//if ((genderEntry.getSelectedItem() == "Select")|| (hairEntry.getSelectedItem() == "Select"))
 			//JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!",  "Before we move on..", JOptionPane.WARNING_MESSAGE);
@@ -124,7 +211,14 @@ public class AvatarBuilder extends JFrame implements ActionListener {
 			setVisible(false);
 			MainMenuClass.changeScreen();
 		//}
+		}
 
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		System.out.println(13);
+		chooseHairImage();
+		
 	}
+
 
 }

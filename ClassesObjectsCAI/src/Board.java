@@ -43,7 +43,7 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 		// set up panel
 		mazePanel.setLayout(new GridLayout(13, 17));
 		mazePanel.setBackground(bkgdColour);
-		mazePanel.setBounds(0, 100, 40 * 13, 40 * 17);
+		mazePanel.setBounds(0, 0, 40 * 13, 40 * 17);
 
 		add(mazePanel);
 

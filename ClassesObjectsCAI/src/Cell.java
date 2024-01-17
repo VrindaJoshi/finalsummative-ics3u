@@ -35,11 +35,14 @@ public class Cell extends JLabel{
 	// code icon method
 	private void setCodeIcon() {
 		
-		if (item == 'E')
-            setIcon(Icons.FLOOR);
-        else if (item == 'C')
-            setIcon(Icons.COUNTER);
-    
+		// DEFAULT
+		if (item == 'W') 
+			 setIcon(Icons.COUNTER);
+		else if (item == 'B') 
+			 setIcon(Icons.COMPUTER);
+		else if (item == 'U') 
+			 setIcon(Icons.USER[1]);
+
 		
 	}
 

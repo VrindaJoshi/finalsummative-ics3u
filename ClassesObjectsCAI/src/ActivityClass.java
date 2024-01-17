@@ -1,51 +1,71 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class ActivityClass extends JFrame implements KeyListener {
+public class ActivityClass extends JFrame {
 
-	// sets up the game board, a panel
-	private Store store = new Store();
+	// colors
+	static final Color BEIGE = new Color(227, 228, 219);
+	static final Color GRAY = new Color(205, 205, 205);
+
+	static Board board = new Board();
+
+	static JPanel mainPanel = new JPanel();
+	static JPanel sidePanel = new JPanel();
+
 
 	// constructor method to set up frame
 	public ActivityClass() {
-			
+
 		// construct frame
-		setSize(1366,766);
-		setTitle("Vrinda Joshi's PacMan Game");
-			
+		setSize(1366, 766);
+		setTitle("Game");
+
 		// used to save memory
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-		// set up board
-		store.setBounds(0, 0, 1366, 766);
-		add(store);
-			
+
+		setMainPanel();
+		setSidePanel();
+
 		// key listener for board so pacman can move
-		addKeyListener(store);
 		setLayout(null);
-		
+
 		// set visible
 		setVisible(true);
 	}
 
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+	private void setSidePanel() {
+
+		// set up blank panel
+		sidePanel.setBounds(810, 45, 300, 40*13);
+		sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		sidePanel.setBackground(Color.decode("#ffe5ec"));
+		sidePanel.setLayout(null);
+		mainPanel.add(sidePanel);
 		
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	private void setMainPanel() {
+
+		// set up blank panel
+		mainPanel.setBounds(50, 50, 1166, 616);
+		mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		mainPanel.setLayout(null);
+		add(mainPanel);
+
+		// set up board
+		board.setBounds(30, 25, 40 * 18, 40 * 14);
+		mainPanel.add(board);
+
+		// key listener for board so pacman can move
+		addKeyListener(board);
+
 	}
+	
+	
 }

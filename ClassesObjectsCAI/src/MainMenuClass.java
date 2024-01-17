@@ -229,8 +229,8 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 		nextStep.setText("start learning");
 
 		avatarInfo.setText(
-				"<html>name: " + AvatarBuilder.userAvatar.getName() + "<br>age: " + AvatarBuilder.userAvatar.getAge()
-						+ "<br>gender: " + AvatarBuilder.userAvatar.getGender().toLowerCase() + "<br>hair color: "
+				"<html>Name: " + AvatarBuilder.userAvatar.getName() + "<br>Age: " + AvatarBuilder.userAvatar.getAge()
+						+ "<br>Gender: " + AvatarBuilder.userAvatar.getGender().toLowerCase() + "<br>Hair Color: "
 						+ AvatarBuilder.userAvatar.getHairColor().toLowerCase() + "</html>");
 
 		sidePanel.add(hairImg);
