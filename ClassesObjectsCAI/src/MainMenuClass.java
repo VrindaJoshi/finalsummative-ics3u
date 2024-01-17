@@ -24,7 +24,7 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 	private static ImageIcon circleIcon = new ImageIcon("images/blank.png");
 	private static JLabel circle = new JLabel(
 			new ImageIcon(circleIcon.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
-	private JPanel topPanel = new JPanel();
+	private static JPanel topPanel = new JPanel();
 
 	static JButton nextStep = new JButton("create avatar");
 
@@ -43,6 +43,7 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 	static JLabel faceImg = new JLabel(new ImageIcon(new ImageIcon("images/avatar/blankFace.png").getImage()
 			.getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH)));
 
+
 	public MainMenuClass() {
 
 		// set size of frame
@@ -57,21 +58,28 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 
 		setMenuBar();
 
-		setJMenuBar(MenuBar.MENUBAR);
-
 		// set up panel w content
 		setTopPanel();
 
 		setSidePanel();
+		
+		changeScreen();
 
 		setVisible(true);
 	}
 
 	private void setMenuBar() {
+		
+		JMenuBar menuBar = new JMenuBar();
+
+		JMenu mMenu = new JMenu("Home");
+		JMenu mEdu = new JMenu("Learn");
+		JMenu mActivity = new JMenu("Play");
+		JMenu mQuiz = new JMenu("Quiz");
 
 		// menu bar - used like buttons
 
-		MenuBar.mEdu.addMenuListener(new MenuListener() {
+		mEdu.addMenuListener(new MenuListener() {
 			@Override
 			public void menuSelected(MenuEvent e) {
 				System.out.println(CAIApp.avatarCreated);
@@ -93,7 +101,7 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 			}
 		});
 
-		MenuBar.mActivity.addMenuListener(new MenuListener() {
+		mActivity.addMenuListener(new MenuListener() {
 			public void menuSelected(MenuEvent e) {
 				if (CAIApp.educationDone == true) {
 					new ActivityClass();
@@ -112,7 +120,7 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 				// TODO Auto-generated method stub
 			}
 		});
-		MenuBar.mQuiz.addMenuListener(new MenuListener() {
+		mQuiz.addMenuListener(new MenuListener() {
 			public void menuSelected(MenuEvent e) {
 				if (CAIApp.activityDone == true) {
 					new QuizClass();
@@ -132,11 +140,12 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 			}
 		});
 
-		MenuBar.MENUBAR.add(MenuBar.mMenu);
-		MenuBar.MENUBAR.add(MenuBar.mEdu);
-		MenuBar.MENUBAR.add(MenuBar.mActivity);
-		MenuBar.MENUBAR.add(MenuBar.mQuiz);
+		menuBar.add(mMenu);
+		menuBar.add(mEdu);
+		menuBar.add(mActivity);
+		menuBar.add(mQuiz);
 
+		setJMenuBar(menuBar);
 	}
 
 	private void setSidePanel() {
@@ -173,8 +182,9 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 		mainPanel.add(topPanel);
 
 		// set title
-		welcomeLabel.setBounds(50, 60, 1000, 100);
+		welcomeLabel.setBounds(50, 60, 1000, 100); 
 		welcomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 100));
+
 		topPanel.add(welcomeLabel);
 
 		// set text
@@ -214,6 +224,7 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 		String titletext = "welcome, " + AvatarBuilder.userAvatar.getName().toLowerCase();
 
 		welcomeLabel.setText(titletext);
+
 		highlightedLabel.setText("let’s start learning!");
 		nextStep.setText("start learning");
 
@@ -226,6 +237,11 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 
 		faceImg.setBounds(20, 20, 200, 200);
 		sidePanel.add(faceImg);
+		
+		welcomeLabel.setBounds(50, 60, 1000, 100); 
+		welcomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 100));
+
+		topPanel.add(welcomeLabel);
 
 	}
 

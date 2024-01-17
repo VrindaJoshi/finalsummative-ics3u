@@ -60,8 +60,6 @@ public class EducationClass extends JFrame implements ActionListener {
 		setTopPanel();
 
 		setMenuBar();
-		setJMenuBar(MenuBar.MENUBAR);
-
 
 		// initials panelArray method
 		initializePanels();
@@ -81,9 +79,16 @@ public class EducationClass extends JFrame implements ActionListener {
 
 	private void setMenuBar() {
 
+		JMenuBar menuBar = new JMenuBar();
+
+		JMenu mMenu = new JMenu("Home");
+		JMenu mEdu = new JMenu("Learn");
+		JMenu mActivity = new JMenu("Play");
+		JMenu mQuiz = new JMenu("Quiz");
+
 		// menu bar - used like buttons
 
-		MenuBar.mMenu.addMenuListener(new MenuListener() {
+		mMenu.addMenuListener(new MenuListener() {
 			@Override
 			public void menuSelected(MenuEvent e) {
 				new MainMenuClass();
@@ -101,7 +106,7 @@ public class EducationClass extends JFrame implements ActionListener {
 			}
 		});
 
-		MenuBar.mActivity.addMenuListener(new MenuListener() {
+		mActivity.addMenuListener(new MenuListener() {
 			public void menuSelected(MenuEvent e) {
 				if (CAIApp.educationDone == true) {
 					new ActivityClass();
@@ -121,7 +126,7 @@ public class EducationClass extends JFrame implements ActionListener {
 				// TODO Auto-generated method stub
 			}
 		});
-		MenuBar.mQuiz.addMenuListener(new MenuListener() {
+		mQuiz.addMenuListener(new MenuListener() {
 			public void menuSelected(MenuEvent e) {
 				if (CAIApp.activityDone == true) {
 					new QuizClass();
@@ -142,11 +147,12 @@ public class EducationClass extends JFrame implements ActionListener {
 			}
 		});
 
-		MenuBar.MENUBAR.add(MenuBar.mMenu);
-		MenuBar.MENUBAR.add(MenuBar.mEdu);
-		MenuBar.MENUBAR.add(MenuBar.mActivity);
-		MenuBar.MENUBAR.add(MenuBar.mQuiz);
+		menuBar.add(mMenu);
+		menuBar.add(mEdu);
+		menuBar.add(mActivity);
+		menuBar.add(mQuiz);
 
+		setJMenuBar(menuBar);
 	}
 
 	// this method sets ups and adds the JProgressBar and the panel above it
