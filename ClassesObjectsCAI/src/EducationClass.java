@@ -48,7 +48,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// set size of frame
 		setSize(1366, 766);
-		setTitle("Education Class");
+		setName("All About Objects+ + Classes");
 
 		// set up main panel
 		mainPanel.setBounds(0, 0, 1366, 766);
@@ -260,7 +260,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[16].add(textLabelOne);
 
 	}
@@ -272,7 +272,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[15].add(textLabelOne);
 
 		// create + setup picture label
@@ -295,9 +295,9 @@ public class EducationClass extends JFrame implements ActionListener {
 		JLabel textLabelTwo = new JLabel("Press on Generate!\r\n" + "");
 
 		// set up text labels
-		textLabelOne.setBounds(50, 50, 600, 50);
+		textLabelOne.setBounds(50, 50, 600, 80);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[14].add(textLabelOne);
 
 		// create + setup picture label
@@ -311,7 +311,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		textLabelTwo.setBounds(50, 200, 500, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[14].add(textLabelTwo);
 
 	}
@@ -324,7 +324,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[13].add(textLabelOne);
 
 		// create + setup picture label
@@ -340,13 +340,13 @@ public class EducationClass extends JFrame implements ActionListener {
 	private void thirteenthSlide() {
 		// create text labels
 		JLabel textLabelOne = new JLabel(
-				"Next, go to the menu bar at the top again, and press on \'Source > Generate Getters and Setters…\'");
+				"<html>Next, go to the menu bar at the top again, and press on<br> \'Source > Generate Getters and Setters…\'</html>");
 		JLabel textLabelTwo = new JLabel("Select all the fields, and press on Generate!\r\n" + "");
 
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 600, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[12].add(textLabelOne);
 
 		// create + setup picture label
@@ -360,7 +360,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		textLabelTwo.setBounds(50, 200, 500, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[12].add(textLabelTwo);
 
 	}
@@ -374,7 +374,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[11].add(textLabelOne);
 
 		// create + setup picture label
@@ -388,7 +388,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		textLabelTwo.setBounds(50, 250, 1000, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[11].add(textLabelTwo);
 
 	}
@@ -396,14 +396,14 @@ public class EducationClass extends JFrame implements ActionListener {
 	private void eleventhSlide() {
 		// create text labels
 		JLabel textLabelOne = new JLabel(
-				"There isn’t much coding after this! Next, go to the menu bar at the top, and press on \'Source > Generate Constructor using Fields…\'");
+				"<html>There isn’t much coding after this! Next, go to the menu bar at the top, and press on <br>\'Source > Generate Constructor using Fields…\'</html>");
 		JLabel textLabelTwo = new JLabel(
 				"This screen will pop up. Make sure all the fields are selected, and press Generate.");
 
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 800, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[10].add(textLabelOne);
 
 		// create + setup picture label
@@ -415,9 +415,9 @@ public class EducationClass extends JFrame implements ActionListener {
 		methodImg.setLayout(null);
 		panelArray[10].add(methodImg);
 
-		textLabelTwo.setBounds(50, 200, 500, 50);
+		textLabelTwo.setBounds(50, 200, 800, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[10].add(textLabelTwo);
 
 	}
@@ -431,7 +431,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 600, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[9].add(textLabelOne);
 
 		// create + setup picture label
@@ -442,9 +442,9 @@ public class EducationClass extends JFrame implements ActionListener {
 		methodImg.setLayout(null);
 		panelArray[9].add(methodImg);
 
-		textLabelTwo.setBounds(600, 400, 500, 50);
+		textLabelTwo.setBounds(580, 380, 500, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[9].add(textLabelTwo);
 	}
 
@@ -460,7 +460,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 0, 400, 260);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[8].add(textLabelOne);
 
 		// create + setup picture label
@@ -482,9 +482,9 @@ public class EducationClass extends JFrame implements ActionListener {
 		JLabel textLabelTwo = new JLabel("<html>To call this method, you would write:<html>");
 
 		// set up text labels
-		textLabelOne.setBounds(50, 0, 250, 260);
+		textLabelOne.setBounds(50, 50, 250, 260);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[7].add(textLabelOne);
 
 		// create + setup picture label
@@ -495,9 +495,9 @@ public class EducationClass extends JFrame implements ActionListener {
 		methodImg.setLayout(null);
 		panelArray[7].add(methodImg);
 
-		textLabelTwo.setBounds(350, 320, 1000, 50);
+		textLabelTwo.setBounds(300, 320, 1000, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[7].add(textLabelTwo);
 
 		ImageIcon callMethodIcon = new ImageIcon("images/slideshow/slide7-2.png");
@@ -521,7 +521,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[6].add(textLabelOne);
 
 		// create + setup picture label
@@ -534,7 +534,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		textLabelTwo.setBounds(50, 100, 1000, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[6].add(textLabelTwo);
 
 	}
@@ -553,7 +553,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[5].add(textLabelOne);
 
 		// create + setup picture label
@@ -565,7 +565,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		textLabelTwo.setBounds(50, 150, 1000, 300);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[5].add(textLabelTwo);
 
 	}
@@ -573,17 +573,17 @@ public class EducationClass extends JFrame implements ActionListener {
 	private void fifthSlide() {
 		// create text labels
 		JLabel textLabelOne = new JLabel(
-				"<html>Let's take a look at the code for the Avatar template class:\r<br><br><br>"
+				"<html>Let's take a look at the code for the Avatar template <br>class:\r<br><br><br>"
 						+ "&bull the first line creates the class\r\n<br>"
 						+ "&bull initialize all the instance variables\r\n<br>"
-						+ "&bull constructor method: constructs every instance of the Avatar class\r\n<br>"
+						+ "&bull constructor method: constructs every instance of<br> the Avatar class\r\n<br>"
 						+ "&bull get and set methods\r\n<br>"
-						+ "&bull to string method: method that summarizes every instance\r\n<br>" + "</html>");
+						+ "&bull to string method: method that summarizes every<br> instance\r\n<br>" + "</html>");
 
 		// set up text labels
-		textLabelOne.setBounds(50, 50, 1000, 170);
+		textLabelOne.setBounds(50, 50, 1000, 300);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[4].add(textLabelOne);
 
 		JEditorPane pane = new JEditorPane();
@@ -618,12 +618,12 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[3].add(textLabelOne);
 
-		textLabelTwo.setBounds(50, 150, 1000, 50);
+		textLabelTwo.setBounds(50, 150, 1000, 70);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[3].add(textLabelTwo);
 
 	}
@@ -637,7 +637,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[2].add(textLabelOne);
 
 		// create + setup picture label
@@ -655,19 +655,19 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// create text labels
 		JLabel textLabelOne = new JLabel(
-				"<html>Let’s go back to the car example. A car must be designed and engineered by someone. When you press the brakes of a car, the speed of the car will decrease, and when you accelerate, <br>the car will speed up. These messages are sent to the car, the object.</html>");
+				"<html>Let’s go back to the car example. A car must be designed and engineered by someone. When you press the brakes of a car, the speed of the car will decrease, and when you accelerate, the car will speed up. These messages are sent to the car, the object.</html>");
 		JLabel textLabelTwo = new JLabel(
-				"<html>Object-Oriented Programming takes real-life objects, and creates a template to represent these objects in code, a class. Once you have a template, you can make copies, each with <br>their own unique attributes. These copies are called instances. You can send messages to each copy, by calling methods.</html>");
+				"<html>Object-Oriented Programming takes real-life objects, and creates a template to represent these objects in code, a class. Once you have a template, you can make copies, each with their own unique attributes. These copies are called instances.<br> You can send messages to each copy, by calling methods.</html>");
 
 		// set up text labels
-		textLabelOne.setBounds(50, 50, 1000, 50);
+		textLabelOne.setBounds(50, 50, 1000, 70);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[1].add(textLabelOne);
 
-		textLabelTwo.setBounds(50, 150, 1000, 50);
+		textLabelTwo.setBounds(50, 150, 1000, 70);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[1].add(textLabelTwo);
 
 	}
@@ -676,9 +676,9 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// create text labels
 		JLabel textLabelOne = new JLabel(
-				"Let’s start by thinking, what " + "is an object? Well, we can consider an object any "
+				"<html>Let’s start by thinking, what " + "is an object? Well, we can consider an object any "
 						+ "person, place, or thing. All 3 of these have specific"
-						+ " characteristics, and tasks that they can do.");
+						+ " <br>characteristics, and tasks that they can do</html>.");
 		JLabel textLabelTwo = new JLabel(
 				"<html>Let’s say our object is a car." + " A car will have characteristics such as its color, "
 						+ "speed,<br> and fuel capacity. A car can drive forwards, "
@@ -691,17 +691,17 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up text labels
 		textLabelOne.setBounds(50, 50, 1000, 50);
 		textLabelOne.setLayout(null);
-		textLabelOne.setFont(Fonts.interRegularEDU);
+		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[0].add(textLabelOne);
 
 		textLabelTwo.setBounds(50, 150, 1000, 50);
 		textLabelTwo.setLayout(null);
-		textLabelTwo.setFont(Fonts.interRegularEDU);
+		textLabelTwo.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[0].add(textLabelTwo);
 
 		textLabelThree.setBounds(50, 300, 1000, 50);
 		textLabelThree.setLayout(null);
-		textLabelThree.setFont(Fonts.interRegularEDU);
+		textLabelThree.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[0].add(textLabelThree);
 
 		// create + setup picture label

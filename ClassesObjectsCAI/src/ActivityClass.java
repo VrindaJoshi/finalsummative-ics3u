@@ -8,7 +8,7 @@ import javax.swing.*;
 public class ActivityClass extends JFrame {
 
 	// colors
-	static final Color BEIGE = new Color(227, 228, 219);
+	static final Color BEIGE = new Color(200, 235, 198);
 	static final Color GRAY = new Color(205, 205, 205);
 
 	static Board board = new Board();
@@ -22,7 +22,7 @@ public class ActivityClass extends JFrame {
 
 		// construct frame
 		setSize(1366, 766);
-		setTitle("Game");
+		setName("All About Objects+ + Classes");
 
 		// used to save memory
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

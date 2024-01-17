@@ -42,8 +42,8 @@ public class Cell extends JLabel{
 			 setIcon(Icons.COMPUTER);
 		else if (item == 'U') 
 			 setIcon(Icons.USER[1]);
-
-		
+		else if (item == 'C') 
+			 setIcon(Icons.CUSTOMER[1]);	
 	}
 
 }

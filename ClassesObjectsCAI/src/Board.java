@@ -13,10 +13,7 @@ import javax.sound.sampled.*;
 
 // class
 @SuppressWarnings("serial")
-public class Board extends JPanel implements KeyListener, ActionListener {
-
-	// game timer - timer belongs to swing package
-	private Timer gameTimer = new Timer(250, this); // 250ms
+public class Board extends JPanel implements KeyListener {
 
 	// panel for board
 	private JPanel mazePanel = new JPanel();
@@ -28,9 +25,11 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 	static Mover user;
 
 	// array of customers
-	private Mover[] customerArray = new Mover[3];
+	private Mover[] customerArray = new Mover[1];
 
 	private boolean currentCakeDone = false;
+	
+	static int currentStance = 1;
 
 	// constructor method - this method constructs the board
 	public Board() {
@@ -49,7 +48,7 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 
 		// load board, contents
 		loadBoard();
-
+		
 	} // end of constructor
 
 	// load board method
@@ -80,8 +79,6 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 					// line array
 					mazeArray[row][column] = new Cell(lineArray[column]);
 
-					mazeArray[row][column].setBorder(BorderFactory.createLineBorder(Color.black));
-
 					// if the column is pacman, put pac man there
 					if (lineArray[column] == 'W')
 						mazeArray[row][column].setBorder(BorderFactory.createLineBorder(Color.decode("#98343c")));
@@ -89,7 +86,12 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 					else if (lineArray[column] == 'U') {
 						user = new Mover(row, column);
 						user.setIcon(Icons.USER[0]);
-						user.setDirection(0);
+						user.setDirection(2);
+					}
+					else if (lineArray[column] == 'C') {
+						customerArray[0] = new Mover(row, column);
+						customerArray[0].setIcon(Icons.CUSTOMER[0]);
+						customerArray[0].setDirection(1);
 					}
 
 					// if the columns designates a customer, put a customer there
@@ -125,6 +127,8 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 		}
 
 	} // end of loadBoard method
+	
+	
 
 // ______________________________________________________________________________________________
 
@@ -142,45 +146,40 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void keyPressed(KeyEvent key) {
+		
+		moveCustomers();
 
-		// starts game when key gets pressed
-		gameTimer.addActionListener(null);
+		// if pacman is not dead and user has not wo
 
-		if (gameTimer.isRunning() == false)
-			gameTimer.start();
+		// change direction based on key
+		int direction = key.getKeyCode() - 37;
 
-		// if pacman is not dead and user has not won
-		else {
+		// delta row/column
+		int dRow = 0;
+		int dCol = 0;
 
-			// change direction based on key
-			int direction = key.getKeyCode() - 37;
+		// based on key set direction
+		if (direction == 0)
+			dCol = -1;
+		else if (direction == 1)
+			dRow = -1;
+		else if (direction == 2)
+			dCol = 1;
+		else if (direction == 3)
+			dRow = 1;
 
-			// delta row/column
-			int dRow = 0;
-			int dCol = 0;
-
-			// based on key set direction
-			if (direction == 0)
-				dCol = -1;
-			else if (direction == 1)
-				dRow = -1;
-			else if (direction == 2)
-				dCol = 1;
-			else if (direction == 3)
-				dRow = 1;
-
-			// if the next row/column is not equal to a wall
-			if (mazeArray[user.getRow() + dRow][user.getColumn() + dCol].getIcon() != Icons.COUNTER) {
-				// set icon to that direction
+		// if the next row/column is not equal to a wall
+		if (mazeArray[user.getRow() + dRow][user.getColumn() + dCol].getIcon() != Icons.COUNTER && noBumping(dRow, dCol)) {
+			// set icon to that direction
+			if (direction == 0 || direction == 2)
 				user.setIcon(Icons.USER[direction]);
-				user.setDirection(direction);
+			user.setDirection(direction);
 
-				// update the Pac-Man's position
-				user.move();
+			// update the Pac-Man's position
+			// user.move();
 
-				// perform the move immediately
-				performMove(user);
-			}
+			// perform the move immediately
+			performMove(user);
 
 		}
 
@@ -205,28 +204,53 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 			// if next cell is not a wall
 			if (nextCell.getIcon() != Icons.COUNTER) {
 
+				currentCell.setIcon(Icons.BLANK);
+
 				// move the mover
 				mover.move();
-
 				// set currrent cell
 				currentCell = mazeArray[mover.getRow()][mover.getColumn()];
-			}
 
-			// is mover and pacman did not collide
-			else
+				// is mover and pacman did not collide
+
 				currentCell.setIcon(mover.getIcon());
+				if (mover == customerArray[0]) {
+					currentCell.setIcon(Icons.CUSTOMER[3]);
+				}
+				
+				System.out.println(currentCell);
 
-			// if current cell is a food
-			if (mover == user && currentCell.getItem() == 'M') {
-				// prompt question pop up, add to menu bar or button
+				if (mover == user && currentCell.getItem() == 'M') {
+					new CustomerOrderClass(1);
 
+				}
+				
+				if (mover == customerArray[0]) {
+					moveCustomers();
+				}
 			}
-
+		
+			// if current cell is a food
 			// if the cell is a cherry
 
 		}
 
 	}// end of priv method
+
+	// checks to make sure the customer and user do not bump into each other
+	private boolean noBumping(int dRow, int dCol) {
+
+		// check if ghost has collided
+		for (int index = 0; index < Icons.CUSTOMER.length; index++) {
+
+			if (mazeArray[user.getRow() + dRow][user.getColumn() + dCol].getIcon() == Icons.CUSTOMER[index]) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
 
 	// this method moves the customers
 	private void moveCustomers() {
@@ -241,28 +265,20 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 			Cell nextCell = mazeArray[customer.getNextRow()][customer.getNextColumn()];
 
 			int dir = 0;
+			
 
-			do {
-				dir = 0;
-			} while (currentCell.getItem() != 'E' && currentCakeDone == false);
-
-			do {
+			if (nextCell.getItem() != 'C') {
 				dir = 2;
-			} while (customer.getColumn() != -1 && currentCakeDone == true);
+				customer.setDirection(dir);
+				performMove(customer);
+			} 
+
+
 
 			// set the customers' direction
-			customer.setDirection(dir);
-
+						
 		}
 
-	}
-
-	// action listener
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		System.out.println(1);
-		performMove(user);
-		// moveCustomers();
 	}
 
 } // end of class

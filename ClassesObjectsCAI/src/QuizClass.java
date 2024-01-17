@@ -41,6 +41,8 @@ public class QuizClass extends JFrame implements ActionListener {
 	public QuizClass() {		
 
 		setSize(1366, 766);
+		setName("All About Objects+ + Classes");
+
 
 		// set up main panel
 		mainPanel.setBounds(0, 0, 1366, 766);

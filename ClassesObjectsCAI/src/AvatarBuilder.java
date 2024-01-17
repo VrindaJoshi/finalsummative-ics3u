@@ -9,13 +9,13 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
-public class AvatarBuilder extends JFrame implements ActionListener, ItemListener{
+public class AvatarBuilder extends JFrame implements ActionListener, ItemListener {
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
 	static final Color GRAY = new Color(205, 205, 205);
-	
-	//static values
+
+	// static values
 	static Avatar userAvatar;
 
 	private JPanel mainPanel = new JPanel();
@@ -30,22 +30,22 @@ public class AvatarBuilder extends JFrame implements ActionListener, ItemListene
 
 	// input points
 	private JTextField nameEntry = new JTextField();
-		
+
 	private JSpinner ageEntry = new JSpinner(new SpinnerNumberModel(0, 0, 122, 1));
-	
+
 	private ButtonGroup group = new ButtonGroup();
-	
-	
-	private String[] genders = {"Select","Male","Female","Other"};
-	private String[] colors = {"Select","Brown","Blonde"};
-	
+
+	private String[] genders = { "Select", "Male", "Female", "Other" };
+	private String[] colors = { "Select", "Brown", "Blonde" };
+
 	@SuppressWarnings("unchecked")
 	private JComboBox genderEntry = new JComboBox(genders);
 	@SuppressWarnings("unchecked")
 	private JComboBox hairEntry = new JComboBox(colors);
-	
+
 	private ImageIcon circleIcon = new ImageIcon("images/blank.png");
-	private JLabel circle = new JLabel(new ImageIcon(circleIcon.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
+	private JLabel circle = new JLabel(
+			new ImageIcon(circleIcon.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)));
 
 	static String hairPNG = "";
 
@@ -59,17 +59,18 @@ public class AvatarBuilder extends JFrame implements ActionListener, ItemListene
 			new ImageIcon(new ImageIcon(hairPNG).getImage().getScaledInstance(195, 195, java.awt.Image.SCALE_SMOOTH)));
 	static JLabel faceImg = new JLabel(new ImageIcon(new ImageIcon("images/avatar/blankFace.png").getImage()
 			.getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH)));
-	
+
 	public AvatarBuilder() {
 
 		setSize(783, 533);
+		setName("All About Objects+ + Classes");
+
 
 		// set up main panel
 		mainPanel.setBounds(0, 0, 783, 533);
 		mainPanel.setBackground(BEIGE);
 		mainPanel.setLayout(null);
 		add(mainPanel);
-		
 
 		setTopPanel();
 
@@ -88,74 +89,69 @@ public class AvatarBuilder extends JFrame implements ActionListener, ItemListene
 
 		// set title
 		welcomeLabel.setBounds(40, 40, 683, 70);
-		welcomeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 60));
+		welcomeLabel.setFont(MainMenuClass.italiana.deriveFont(60f));
 		topPanel.add(welcomeLabel);
 
 		// button
 		nextStep.setBounds(683 - 30 - 100, 403 - 30 - 50, 100, 50);
-		nextStep.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		nextStep.setFont(MainMenuClass.inter.deriveFont(17f));
 		nextStep.setBackground(GRAY);
 		nextStep.addActionListener(this);
 		topPanel.add(nextStep);
 
 		// set field labels
-		fieldsLabels.setBounds(50, 130, 90, 200);
-		fieldsLabels.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		fieldsLabels.setBounds(50, 130, 140, 200);
+		fieldsLabels.setFont(MainMenuClass.inter.deriveFont(20f));
 		topPanel.add(fieldsLabels);
-		
+
 		nameEntry.setBounds(160, 145, 150, 25);
-		nameEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		nameEntry.setFont(MainMenuClass.inter.deriveFont(15f));
 		nameEntry.setBorder(BorderFactory.createLineBorder(Color.black));
 		topPanel.add(nameEntry);
-		
+
 		ageEntry.setBounds(160, 195, 70, 25);
-		ageEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		ageEntry.setFont(MainMenuClass.inter.deriveFont(15f));
 		ageEntry.setBorder(BorderFactory.createLineBorder(Color.black));
 		topPanel.add(ageEntry);
-		
+
+		// ITEM LISTENER
+		// https://stackoverflow.com/questions/58939/jcombobox-selection-change-listener
 		genderEntry.setBounds(160, 245, 70, 25);
-		genderEntry.addItemListener(new ItemListener()
-	    {
-	        @Override
-	        public void itemStateChanged(ItemEvent e)
-	        {
-	            if(e.getID() == ItemEvent.ITEM_STATE_CHANGED)
-	            {
-	                if(e.getStateChange() == ItemEvent.SELECTED)
-	                {
-	                	chooseHairImage();
-	                }
-	            }
-	        }
-	    });
+		genderEntry.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+					if (e.getStateChange() == ItemEvent.SELECTED) {
+						chooseHairImage();
+					}
+				}
+			}
+		});
 		genderEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		genderEntry.setBorder(BorderFactory.createLineBorder(Color.black));
 		topPanel.add(genderEntry);
-		
-		hairEntry.addItemListener(new ItemListener()
-	    {
-	        @Override
-	        public void itemStateChanged(ItemEvent e)
-	        {
-	            if(e.getID() == ItemEvent.ITEM_STATE_CHANGED)
-	            {
-	                if(e.getStateChange() == ItemEvent.SELECTED)
-	                {
-	                	chooseHairImage();
-	                }
-	            }
-	        }
-	    });
+
+		hairEntry.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getID() == ItemEvent.ITEM_STATE_CHANGED) {
+					if (e.getStateChange() == ItemEvent.SELECTED) {
+						chooseHairImage();
+					}
+				}
+			}
+		});
 		hairEntry.setBounds(160, 290, 70, 25);
 		hairEntry.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		hairEntry.setBorder(BorderFactory.createLineBorder(Color.black));
 		topPanel.add(hairEntry);
-		
+
 		circle.setBounds(450, 125, 150, 150);
 		topPanel.add(circle);
 	}
+
 	private void chooseHairImage() {
-		
+
 		topPanel.remove(hairImg);
 
 		if (genderEntry.getSelectedItem() == "Male" || genderEntry.getSelectedItem() == "Other") {
@@ -169,10 +165,9 @@ public class AvatarBuilder extends JFrame implements ActionListener, ItemListene
 			hairImg = new JLabel(new ImageIcon(
 					new ImageIcon(hairPNG).getImage().getScaledInstance(107, 107, java.awt.Image.SCALE_SMOOTH)));
 
-			hairImg.setBounds(457, 105-30, 150, 150);
+			hairImg.setBounds(457, 105 - 30, 150, 150);
 
 		} else {
-
 
 			if (hairEntry.getSelectedItem() == "Brown") {
 				hairPNG = "images/avatar/femaleBrownHair.png";
@@ -184,15 +179,15 @@ public class AvatarBuilder extends JFrame implements ActionListener, ItemListene
 			hairImg = new JLabel(new ImageIcon(
 					new ImageIcon(hairPNG).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 
-			hairImg.setBounds(430, 135-30, 200, 200);
+			hairImg.setBounds(430, 135 - 30, 200, 200);
 
 		}
 
 		topPanel.remove(circle);
-		
+
 		topPanel.add(hairImg);
 
-		faceImg.setBounds(450, 125-30, 150, 150);
+		faceImg.setBounds(450, 125 - 30, 150, 150);
 		topPanel.add(faceImg);
 
 		topPanel.revalidate();
@@ -201,24 +196,24 @@ public class AvatarBuilder extends JFrame implements ActionListener, ItemListene
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {				
-		
-		//if ((genderEntry.getSelectedItem() == "Select")|| (hairEntry.getSelectedItem() == "Select"))
-			//JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!",  "Before we move on..", JOptionPane.WARNING_MESSAGE);
-		//else {
-			userAvatar = new Avatar(nameEntry.getText(), (int)ageEntry.getValue(), (String)genderEntry.getSelectedItem(),(String)hairEntry.getSelectedItem());
+	public void actionPerformed(ActionEvent e) {
+
+		if ((genderEntry.getSelectedItem() == "Select") || (hairEntry.getSelectedItem() == "Select"))
+			JOptionPane.showMessageDialog(topPanel, "Finish personalizing your avatar first!", "Before we move on..",
+					JOptionPane.WARNING_MESSAGE);
+		else {
+			userAvatar = new Avatar(nameEntry.getText(), (int) ageEntry.getValue(),
+					(String) genderEntry.getSelectedItem(), (String) hairEntry.getSelectedItem());
 			CAIApp.avatarCreated = true;
 			setVisible(false);
 			MainMenuClass.changeScreen();
-		//}
 		}
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		System.out.println(13);
-		chooseHairImage();
-		
 	}
 
+	@Override
+	// unused
+	public void itemStateChanged(ItemEvent e) {
+
+	}
 
 }

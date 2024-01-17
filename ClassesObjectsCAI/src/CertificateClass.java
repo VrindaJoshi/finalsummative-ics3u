@@ -11,6 +11,8 @@ public class CertificateClass extends JFrame{
 	public CertificateClass() {
 		
 		setSize(1366, 766);
+		setName("All About Objects+ + Classes");
+
 		setBackground(Color.WHITE);
 				
 		certificate.setBounds(0, 0, 1266, 766);

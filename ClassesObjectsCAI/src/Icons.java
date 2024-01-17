@@ -20,10 +20,10 @@ public class Icons {
 	
 	// pac man array for the different directions
 	public static final ImageIcon[] USER = {
-			new ImageIcon("images/images/user.png"),
+			new ImageIcon("images/images/userInvert.png"),
 			new ImageIcon("images/images/userInvert.png"),
 			new ImageIcon("images/images/user.png"),
-			new ImageIcon("images/images/userInvert.png"),
+			new ImageIcon("images/images/user.png"),
 	};
 	
 	public static final ImageIcon[] CUSTOMER = {
