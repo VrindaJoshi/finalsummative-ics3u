@@ -26,10 +26,10 @@ public class Board extends JPanel implements KeyListener {
 
 	// array of customers
 	private Mover[] customerArray = new Mover[1];
-	
+
 	private boolean currentCakeDone = false;
 	static boolean takenOrder = false;
-	
+
 	static int currentStance = 1;
 
 	// constructor method - this method constructs the board
@@ -49,7 +49,7 @@ public class Board extends JPanel implements KeyListener {
 
 		// load board, contents
 		loadBoard();
-		
+
 	} // end of constructor
 
 	// load board method
@@ -65,6 +65,7 @@ public class Board extends JPanel implements KeyListener {
 		try {
 
 			// set file to import
+
 			inputFile = new Scanner(new File("mazes/store.txt"));
 
 			// reads every row
@@ -88,8 +89,7 @@ public class Board extends JPanel implements KeyListener {
 						user = new Mover(row, column);
 						user.setIcon(Icons.USER[0]);
 						user.setDirection(2);
-					}
-					else if (lineArray[column] == 'C') {
+					} else if (lineArray[column] == 'C') {
 						customerArray[0] = new Mover(row, column);
 						customerArray[0].setIcon(Icons.CUSTOMER[0]);
 						customerArray[0].setDirection(1);
@@ -118,8 +118,6 @@ public class Board extends JPanel implements KeyListener {
 		}
 
 	} // end of loadBoard method
-	
-	
 
 // ______________________________________________________________________________________________
 
@@ -137,7 +135,7 @@ public class Board extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent key) {
-		
+
 		moveCustomers();
 
 		// if pacman is not dead and user has not wo
@@ -160,7 +158,8 @@ public class Board extends JPanel implements KeyListener {
 			dRow = 1;
 
 		// if the next row/column is not equal to a wall
-		if (mazeArray[user.getRow() + dRow][user.getColumn() + dCol].getIcon() != Icons.COUNTER && noBumping(dRow, dCol)) {
+		if (mazeArray[user.getRow() + dRow][user.getColumn() + dCol].getIcon() != Icons.COUNTER
+				&& noBumping(dRow, dCol)) {
 			// set icon to that direction
 			if (direction == 0 || direction == 2)
 				user.setIcon(Icons.USER[direction]);
@@ -201,23 +200,16 @@ public class Board extends JPanel implements KeyListener {
 				if (mover == customerArray[0]) {
 					currentCell.setIcon(Icons.CUSTOMER[3]);
 				}
-				
+
 				if (mover == user && currentCell.getItem() == 'M' && takenOrder == false) {
 					new CustomerOrderClass(ActivityClass.currentCake);
 				}
-				
+
 				if (mover == user && currentCell.getItem() == 'K' && takenOrder == true) {
-					System.out.println(3);
-					ActivityClass.mainPanel.remove(ActivityClass.board);
-					ActivityClass.mainPanel.remove(ActivityClass.sidePanel);		
-					
-					ActivityClass.setCustomer();
-					
-					ActivityClass.mainPanel.revalidate();
-					ActivityClass.mainPanel.repaint();
+					BoardClass.close();
 
 				}
-				
+
 				if (mover == customerArray[0]) {
 					moveCustomers();
 				}
@@ -254,18 +246,15 @@ public class Board extends JPanel implements KeyListener {
 			Cell nextCell = mazeArray[customer.getNextRow()][customer.getNextColumn()];
 
 			int dir = 0;
-			
 
 			if (nextCell.getItem() != 'C') {
 				dir = 2;
 				customer.setDirection(dir);
 				performMove(customer);
-			} 
-
-
+			}
 
 			// set the customers' direction
-						
+
 		}
 
 	}

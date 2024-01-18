@@ -721,7 +721,7 @@ public class EducationClass extends JFrame implements ActionListener {
 
 		// check if button is finish button
 		if (e.getSource() == finishButton) {
-			new QuizClass();
+			new ActivityClass();
 			dispose(); // close frame
 		}
 
