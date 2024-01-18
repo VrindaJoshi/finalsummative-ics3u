@@ -26,8 +26,9 @@ public class Board extends JPanel implements KeyListener {
 
 	// array of customers
 	private Mover[] customerArray = new Mover[1];
-
+	
 	private boolean currentCakeDone = false;
+	static boolean takenOrder = false;
 	
 	static int currentStance = 1;
 
@@ -92,16 +93,6 @@ public class Board extends JPanel implements KeyListener {
 						customerArray[0] = new Mover(row, column);
 						customerArray[0].setIcon(Icons.CUSTOMER[0]);
 						customerArray[0].setDirection(1);
-					}
-
-					// if the columns designates a customer, put a customer there
-					if (lineArray[column] == '0' || lineArray[column] == '1' || lineArray[column] == '2') {
-
-						// get the customer number
-						int gNum = Character.getNumericValue(mazeArray[row][column].getItem());
-
-						// set up that customer number
-						customerArray[gNum] = new Mover(row, column);
 					}
 
 					mazePanel.add(mazeArray[row][column]);
@@ -196,11 +187,6 @@ public class Board extends JPanel implements KeyListener {
 			Cell currentCell = mazeArray[mover.getRow()][mover.getColumn()];
 			Cell nextCell = mazeArray[mover.getNextRow()][mover.getNextColumn()];
 
-			// passage ways
-			if (mover.getColumn() == 13) {
-				// prompt question fill in..
-			}
-
 			// if next cell is not a wall
 			if (nextCell.getIcon() != Icons.COUNTER) {
 
@@ -208,20 +194,27 @@ public class Board extends JPanel implements KeyListener {
 
 				// move the mover
 				mover.move();
-				// set currrent cell
+				// set current cell
 				currentCell = mazeArray[mover.getRow()][mover.getColumn()];
-
-				// is mover and pacman did not collide
 
 				currentCell.setIcon(mover.getIcon());
 				if (mover == customerArray[0]) {
 					currentCell.setIcon(Icons.CUSTOMER[3]);
 				}
 				
-				System.out.println(currentCell);
-
-				if (mover == user && currentCell.getItem() == 'M') {
-					new CustomerOrderClass(1);
+				if (mover == user && currentCell.getItem() == 'M' && takenOrder == false) {
+					new CustomerOrderClass(ActivityClass.currentCake);
+				}
+				
+				if (mover == user && currentCell.getItem() == 'K' && takenOrder == true) {
+					System.out.println(3);
+					ActivityClass.mainPanel.remove(ActivityClass.board);
+					ActivityClass.mainPanel.remove(ActivityClass.sidePanel);		
+					
+					ActivityClass.setCustomer();
+					
+					ActivityClass.mainPanel.revalidate();
+					ActivityClass.mainPanel.repaint();
 
 				}
 				
@@ -229,10 +222,6 @@ public class Board extends JPanel implements KeyListener {
 					moveCustomers();
 				}
 			}
-		
-			// if current cell is a food
-			// if the cell is a cherry
-
 		}
 
 	}// end of priv method

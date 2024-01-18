@@ -13,7 +13,8 @@ public class Cake {
 	private boolean sprinkles;
 	
 	// constructor
-	public Cake(String cakeFlavour, String secondCakeFlavour, String frostingFlavour, String frostingColour,
+	public Cake(String cakeFlavour, String secondCakeFlavour, 
+			String frostingFlavour, String frostingColour,
 			int numLayers, String occasion, boolean sprinkles) {
 		super();
 		this.cakeFlavour = cakeFlavour;

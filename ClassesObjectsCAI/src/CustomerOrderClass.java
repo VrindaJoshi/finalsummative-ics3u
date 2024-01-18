@@ -18,23 +18,26 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 
 	// static values
 	static Avatar userAvatar;
+	static int customerNumber;
 
 	private JPanel mainPanel = new JPanel();
-
-	private JLabel welcomeLabel;
-
 	private JPanel topPanel = new JPanel();
 
-	private JButton nextStep = new JButton("make the cake");
-	
+	//first screen elements
+	private JLabel welcomeLabel;
+	private JButton nextStep = new JButton("to the kitchen!");
 	private JLabel lady = new JLabel(new ImageIcon(new ImageIcon("images/lady.png").getImage().getScaledInstance(100, 115, java.awt.Image.SCALE_SMOOTH)));
-	
 	private JLabel speech = new JLabel(new ImageIcon(new ImageIcon("images/speech.png").getImage().getScaledInstance(1280/5, (int)964/6, java.awt.Image.SCALE_SMOOTH)));
 	private JLabel order;
-	
 	private JLabel speechText;
 	
+	//second screen elements
+	private JLabel constLabel = new JLabel("here's the constuctor for the cake class");
+	private JLabel cakeConstructor = new JLabel(new ImageIcon("images/cake.png"));
+	
+	
 	private String[] number = {"first", "second", "last"};
+	
 	
 	public CustomerOrderClass(int customerNumber) {
 
@@ -98,15 +101,12 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == nextStep) {
-			changeScreen();
+			dispose();
+			Board.takenOrder = true;
+			//changeScreen();
 		}
 
 	}
 
-	private void changeScreen() {
-		
-		
-		
-	}
 
 }
