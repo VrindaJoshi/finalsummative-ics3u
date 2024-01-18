@@ -42,6 +42,15 @@ public class ActivityClass extends JFrame implements ActionListener {
 
 	private static JButton nextStep = new JButton("Start Training");
 
+	private JTabbedPane tabbedPane = new JTabbedPane();
+	private ImageIcon icon = createImageIcon("cakeIcon.png");
+	private JComponent panel1 = makeTextPanel();
+	private JComponent panel2 = makeTextPanel();
+	
+	private JLabel filler = new JLabel("here you will find your customer's order");
+
+
+
 	// constructor method to set up frame
 	public ActivityClass() {
 
@@ -110,10 +119,6 @@ public class ActivityClass extends JFrame implements ActionListener {
 		welcomeLabel.setText("welcome to the kitchen!");
 		welcomeLabel.setFont(MainMenuClass.italiana.deriveFont(60f));
 
-		JTabbedPane tabbedPane = new JTabbedPane();
-		ImageIcon icon = createImageIcon("cakeIcon.png");
-
-		JComponent panel1 = makeTextPanel();
 		//
 		constLabel.setBounds(20, 0, 400, 40);
 		constLabel.setFont(MainMenuClass.inter.deriveFont(15f));
@@ -125,11 +130,8 @@ public class ActivityClass extends JFrame implements ActionListener {
 		tabbedPane.addTab("Basic Cake Recipe", icon, panel1, null);
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-		JComponent panel2 = makeTextPanel();
-		
-		JLabel filler = new JLabel("here you will find your customer's order");
-		filler.setBounds(20, 0, 400, 40);
-        filler.setHorizontalAlignment(JLabel.CENTER);
+		filler.setBounds(100, 0, 300, 40);
+		filler.setHorizontalAlignment(JLabel.CENTER);
 		filler.setFont(MainMenuClass.inter.deriveFont(15f));
 		panel2.add(filler);
 
@@ -140,7 +142,8 @@ public class ActivityClass extends JFrame implements ActionListener {
 		topPanel.add(tabbedPane);
 
 		// text on the side
-		gameIntro.setText("<html>Welcome to the kitchen! Here you will bake all the cakes for your customers. The resources on the side will help you along the way.");
+		gameIntro.setText(
+				"<html>Welcome to the kitchen! Here you will bake all the cakes for your customers. The resources on the side will help you along the way.");
 		gameIntro.setBounds(650, 80, 350, 350);
 		gameIntro.setFont(MainMenuClass.inter.deriveFont(20f));
 
@@ -156,46 +159,13 @@ public class ActivityClass extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(topPanel,
 						"Some one just entered the store! Looks like you got your first customer! ", "!!!",
 						JOptionPane.INFORMATION_MESSAGE);
-				new BoardClass();
+				setCustomer();
+				new Board();
 			}
 		});
 
 		topPanel.revalidate();
 		topPanel.repaint();
-	}
-	
-	private void callBoard() {
-		
-		new
-		
-	}
-
-	private void setSidePanel() {
-
-		// set up blank panel
-		sidePanel.setBounds(810, 45, 300, 40 * 13);
-		sidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		sidePanel.setBackground(Color.decode("#ffe5ec"));
-		sidePanel.setLayout(null);
-		mainPanel.add(sidePanel);
-
-	}
-
-	private void setMainPanel() {
-
-		// set up blank panel
-		mainPanel.setBounds(50, 50, 1166, 616);
-		mainPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		mainPanel.setLayout(null);
-		add(mainPanel);
-
-		// set up board
-		board.setBounds(30, 25, 40 * 18, 40 * 14);
-		mainPanel.add(board);
-
-		// key listener for board so pacman can move
-		addKeyListener(board);
-
 	}
 
 	// https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TabbedPaneDemoProject/src/components/TabbedPaneDemo.java
@@ -203,7 +173,7 @@ public class ActivityClass extends JFrame implements ActionListener {
 		JPanel panel = new JPanel(false);
 		panel.setLayout(null);
 		panel.setBackground(Color.white);
-        
+
 		return panel;
 	}
 
@@ -219,53 +189,15 @@ public class ActivityClass extends JFrame implements ActionListener {
 	}
 	// -------------------------------------------------------
 
-	static void setCustomer() {
+	private void setCustomer() {
 
-		// basic for all orders----------
-
-		mainPanel.setBackground(PINK);
-		mainPanel.setBounds(0, 0, 1366, 766);
-
-		// set up blank panel
-		topPanel.setBounds(50, 50, 1166, 616);
-		topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		topPanel.setBackground(Color.WHITE);
-		topPanel.setLayout(null);
-		mainPanel.add(topPanel);
-
-		JTabbedPane tabbedPane = new JTabbedPane();
-		ImageIcon icon = createImageIcon("cakeIcon.png");
-
-		JComponent panel1 = makeTextPanel("Panel #1");
-		//
-		constLabel.setBounds(20, 0, 400, 40);
-		constLabel.setFont(MainMenuClass.inter.deriveFont(15f));
-		panel1.add(constLabel);
-
-		cakeConstructor.setBounds(20, 40, 445, 235);
-		panel1.add(cakeConstructor);
-
-		tabbedPane.addTab("Basic Cake Recipe", icon, panel1, null);
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
-
-		JComponent panel2 = makeTextPanel("Panel #2");
+		topPanel.remove(gameIntro);
+		topPanel.remove(nextStep);
 
 		order.setBounds(0, 0, 500, 300);
 		panel2.add(order);
-
-		tabbedPane.addTab("Customer's Order", icon, panel2, null);
-		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-
-		tabbedPane.setBounds(50, 150, 500, 350);
-		topPanel.add(tabbedPane);
-
-		// set title
-		welcomeLabel.setBounds(40, 40, 683, 70);
-		welcomeLabel.setFont(MainMenuClass.italiana.deriveFont(60f));
-		topPanel.add(welcomeLabel);
-
+		
 		// ------------
-
 		cakeInstructions.setBounds(600, 250, 400, 30);
 		cakeInstructions.setFont(MainMenuClass.inter.deriveFont(15f));
 		topPanel.add(cakeInstructions);
@@ -274,31 +206,9 @@ public class ActivityClass extends JFrame implements ActionListener {
 		answerField.setBorder(BorderFactory.createLineBorder(Color.black));
 		answerField.setFont(MainMenuClass.inter.deriveFont(15f));
 		topPanel.add(answerField);
-
-		// button
-		nextStep.setBounds(730, 370, 200, 50);
-		nextStep.setFont(MainMenuClass.inter.deriveFont(15f));
-		nextStep.setBackground(PINK);
-		nextStep.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				mainPanel.add(board);
-
-				// key listener for board so pacman can move
-
-				// key listener for board so pacman can move
-				// addKeyListener(board);
-
-				mainPanel.remove(topPanel);
-
-				mainPanel.revalidate();
-				mainPanel.repaint();
-
-			}
-		});
-		topPanel.add(nextStep);
-
+		
+		topPanel.revalidate();
+		topPanel.repaint();
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import javax.sound.sampled.*;
 
 // class
 @SuppressWarnings("serial")
-public class Board extends JPanel implements KeyListener {
+public class Board extends JFrame implements KeyListener {
 
 	// panel for board
 	private JPanel mazePanel = new JPanel();
@@ -35,6 +35,23 @@ public class Board extends JPanel implements KeyListener {
 	// constructor method - this method constructs the board
 	public Board() {
 
+		setSize(40 * 18, 40 * 14);
+		setName("All About Objects+ + Classes");
+
+		// used to save memory
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// key listener for board so pacman can move
+		setLayout(null);
+
+		// key listener for board so pacman can move
+		addKeyListener(this);
+
+		setLocationRelativeTo(null); // sets pop-up in center of screen
+
+		// set visible
+		setVisible(true);
+
 		// set background color base on theme chose in intro panel
 		Color bkgdColour = (Color.WHITE);
 
@@ -43,7 +60,7 @@ public class Board extends JPanel implements KeyListener {
 		// set up panel
 		mazePanel.setLayout(new GridLayout(13, 17));
 		mazePanel.setBackground(bkgdColour);
-		mazePanel.setBounds(0, 0, 40 * 13, 40 * 17);
+		mazePanel.setBounds(0, 0, 40 * 18, 40 * 14);
 
 		add(mazePanel);
 
@@ -206,7 +223,7 @@ public class Board extends JPanel implements KeyListener {
 				}
 
 				if (mover == user && currentCell.getItem() == 'K' && takenOrder == true) {
-					BoardClass.close();
+					dispose();
 
 				}
 
