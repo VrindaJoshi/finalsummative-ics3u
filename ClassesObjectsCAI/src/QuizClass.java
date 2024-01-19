@@ -29,7 +29,7 @@ public class QuizClass extends JFrame implements ActionListener {
 	private JPanel questionsPanel = new JPanel();
 	private JScrollPane scroll = new JScrollPane(questionsPanel);
 
-	int numQuestions = 10;
+	int numQuestions = 8;
 	private String[] questionsArray = new String[numQuestions];
 	private JPanel[] questionPanelArray = new JPanel[numQuestions];
 	private JTextField[] textFieldArray = new JTextField[4];
@@ -41,23 +41,18 @@ public class QuizClass extends JFrame implements ActionListener {
 	
 	private JButton finishQuiz = new JButton("submit");
 	
-	private String[] questionArray = new String[10];
+	private String[] questionArray = new String[numQuestions];
 	private JLabel[] questionLabelArray = new JLabel[10];
-	@SuppressWarnings("rawtypes")
 	private JComboBox[] trueFalseArray = new JComboBox[4];
-
-	 // Initialization of object of "JRadioButton" class. 
-    private JRadioButton  = new JRadioButton(); 
-
-    // Initialization of object of "JRadioButton" class. 
-    jRadioButton2 = new JRadioButton(); 
+	
+	private String[] answerArray = new String[numQuestions];
 	
 	private String[] tfArray = {"select","true","false"};
 
 	public QuizClass() {		
 
 		setSize(1366, 766);
-		setName("All About Objects+ + Classes");
+		setName("All About Objects + Classes");
 		
 		// set up main panel
 		mainPanel.setBounds(0, 0, 1366, 766);
@@ -86,35 +81,81 @@ public class QuizClass extends JFrame implements ActionListener {
 				timeArray[0] = (timeArray[2]/60000)%60;
 				timeArray[1] = (timeArray[2]/1000)%60;
 				
-				if (timeArray[1] < 10)
-					timerLabel.setText(timeArray[0]+":0"+timeArray[1]);
-				else
-					timerLabel.setText(timeArray[0]+":"+timeArray[1]);
+				while (timeArray[0] != 0 && timeArray[1] != 0) {
+					if (timeArray[1] < 10)
+						timerLabel.setText(timeArray[0]+":0"+timeArray[1]);
+					else
+						timerLabel.setText(timeArray[0]+":"+timeArray[1]);
+				}
+				
+				JOptionPane.showMessageDialog(mainPanel,
+						"Times up! ", "!!!",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				gradeTest();
 			}
+
+			
 		});
 
 	}
 
+	private boolean gradeTest() {
+		
+		int answersCorrect = 0;
+		
+		for (int index = 0; index < numQuestions; index++) {
+			if (index < 4) {
+				if (trueFalseArray[index].getSelectedItem() == answerArray[index]) {
+					answersCorrect++;
+				}
+			} else {
+				if (textFieldArray[index-4].getText() == answerArray[index]) {
+					answersCorrect++;
+				}
+			}
+		}
+		
+		double mark = answersCorrect/numQuestions;
+		
+		if (mark > 0.5) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 	private void initializeArrays() {
 		
+		// answers array
+		
+		answerArray[0] = "True";
+		answerArray[1] = "False";
+		answerArray[2] = "True";
+		answerArray[3] = "False";
+		answerArray[4] = "get method";
+		answerArray[5] = "class";
+		answerArray[6] = "setPopulation";
+		answerArray[7] = "new City";
+		
 		// question array
-		questionArray[0] = "<html><br><br>What is an instance?</html>";
-		questionArray[1] = "<html><br><br>What is the difference between fields and instance variables?</html>";
-		questionArray[2] = "<html><br><br>TRUE OR FALSE: The data types of all objects is String<br><br><br><br><br><br></html>";
-		questionArray[3] = "<html><br><br>TRUE OR FALSE: Get methods are called accessor methods<br><br><br><br><br><br></html>";
-		questionArray[4] = "<html><br><br>TRUE OR FALSE: Every instance if familliar with it\'s own instance variables.<br><br><br><br><br><br></html>";
-		questionArray[5] = "<html><br><br>TRUE OR FALSE: To create a new instance, you use the toString method<br><br><br><br><br><br></html>";
-		questionArray[6] = "<html><br><br>FILL IN THE BLANK: <br><br>"
+		
+		questionArray[0] = "<html><br><br>TRUE OR FALSE: The data types of all objects is String<br><br><br><br><br><br></html>";
+		questionArray[1] = "<html><br><br>TRUE OR FALSE: Get methods are called accessor methods<br><br><br><br><br><br></html>";
+		questionArray[2] = "<html><br><br>TRUE OR FALSE: Every instance if familliar with it\'s own instance variables.<br><br><br><br><br><br></html>";
+		questionArray[3] = "<html><br><br>TRUE OR FALSE: To create a new instance, you use the toString method<br><br><br><br><br><br></html>";
+		questionArray[4] = "<html><br><br>FILL IN THE BLANK: <br><br>"
 				+ "a(n)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; "
 				+ "is used to modify the contents of an instance variable.</html>";
-		questionArray[7] = "<html><br><br>FILL IN THE BLANK: <br><br>"
+		questionArray[5] = "<html><br><br>FILL IN THE BLANK: <br><br>"
 				+ "a(n)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;is a template for creating objects.</html>";
-		questionArray[8] = "<html><br><br>FILL IN THE MISSING CODE: <br><br>"
+		questionArray[6] = "<html><br><br>FILL IN THE MISSING CODE: <br><br>"
 				+ "atlanta.&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(100);</html>";
-		questionArray[9] = "<html><br><br>FILL IN THE MISSING CODE: <br><br>"
+		questionArray[7] = "<html><br><br>FILL IN THE MISSING CODE: <i>(Hint: atlanta is an instance of City)<i> <br><br>"
 				+ "City newYork = &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(\"Earth\", \"North America\", \"USA\", \"New York\", 8468000);</html>";		
 
-		
+	
 		for (int index = 0; index < questionArray.length; index++ ) {
 			questionLabelArray[index] = new JLabel(questionArray[index]);
 			questionLabelArray[index].setBounds(40, 100, 766, 250);
@@ -124,33 +165,31 @@ public class QuizClass extends JFrame implements ActionListener {
 			questionPanelArray[index].add(questionLabelArray[index]);
 			
 			//`if true/false (combo box)
-			
-			if (index > 1 && index < 6 ) {
-				trueFalseArray[index-2] = new JComboBox<Object>(tfArray);
-				trueFalseArray[index-2].setLayout(null);
-				trueFalseArray[index-2].setBorder(BorderFactory.createLineBorder(Color.black));
-				trueFalseArray[index-2].setFont(MainMenuClass.inter.deriveFont(20f));
-				trueFalseArray[index-2].setBounds(50, 100, 100, 40);
+			if (index < 4 ) {
+				trueFalseArray[index] = new JComboBox<Object>(tfArray);
+				trueFalseArray[index].setLayout(null);
+				trueFalseArray[index].setBorder(BorderFactory.createLineBorder(Color.black));
+				trueFalseArray[index].setFont(MainMenuClass.inter.deriveFont(20f));
+				trueFalseArray[index].setBounds(50, 100, 100, 40);
 
-				questionLabelArray[index].add(trueFalseArray[index-2]);
-
+				questionLabelArray[index].add(trueFalseArray[index]);
 
 			}
 			
 			// if needs text field
-			else if (index >= 6) {
-				textFieldArray[index-6] = new JTextField();
-				textFieldArray[index-6].setLayout(null);
-				textFieldArray[index-6].setBorder(BorderFactory.createLineBorder(Color.black));
-				textFieldArray[index-6].setFont(MainMenuClass.inter.deriveFont(20f));
-				textFieldArray[index-6].setBounds(50, 95, 130, 40);
+			else {
+				textFieldArray[index-4] = new JTextField();
+				textFieldArray[index-4].setLayout(null);
+				textFieldArray[index-4].setBorder(BorderFactory.createLineBorder(Color.black));
+				textFieldArray[index-4].setFont(MainMenuClass.inter.deriveFont(20f));
+				textFieldArray[index-4].setBounds(50, 95, 130, 40);
 				
-				if (index == 8)
-					textFieldArray[index-6].setBounds(85, 95, 140, 40);
-				else if (index == 9)
-					textFieldArray[index-6].setBounds(150, 95, 150, 40);
+				if (index == 6)
+					textFieldArray[index-4].setBounds(85, 95, 140, 40);
+				else if (index == 7)
+					textFieldArray[index-4].setBounds(150, 95, 150, 40);
 					
-				questionLabelArray[index].add(textFieldArray[index-6]);
+				questionLabelArray[index].add(textFieldArray[index-4]);
 			}
 		}
 	}
@@ -267,11 +306,19 @@ public class QuizClass extends JFrame implements ActionListener {
 			repaint();
 		}
 		else if (e.getSource() == finishQuiz) {
-			//grade quiz
 			//if passed
-			new CertificateClass();
-			dispose();
-			
+			if (gradeTest()) {
+				JOptionPane.showMessageDialog(mainPanel,
+						"You passed! ", "Congrats!",
+						JOptionPane.INFORMATION_MESSAGE);
+				new CertificateClass();
+				dispose();
+			} else {
+				JOptionPane.showMessageDialog(mainPanel,
+						"You failed! Try re-doing the CAI", "..!",
+						JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}
 		}
 
 	}
