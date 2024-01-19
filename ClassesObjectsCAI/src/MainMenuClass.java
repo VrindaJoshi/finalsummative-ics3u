@@ -22,7 +22,7 @@ public class MainMenuClass extends JFrame implements ActionListener, MenuListene
 
 	static JLabel welcomeLabel = new JLabel("welcome");
 	private JLabel textLabel = new JLabel(
-			"<html>In this CAI (Computer-Assisted Instruction) application, you will learn all about classes and objects. In the past, we have learned about data types such as String, int, double, and boolean, but now you will be able to create and use your own data type (an object)! You will explore the concept of Object-Oriented Programming (OOP), and how using objects in your code will be very useful. You will be learning many new terms, and you can access a glossary through the menu bar at the top.</html>");
+			"<html>In this CAI (Computer-Assisted Instruction) application, you will learn all about classes and objects. In the past, we have learned about data types such as String, int, double, and boolean, but now you will be able to create and use your own data type (an object)! You will explore the concept of Object-Oriented Programming (OOP), and how using objects in your code will be very useful.</html>");
 	static JLabel highlightedLabel = new JLabel("<html><b>before we get started, create your avatar!</b></html>");
 
 	private static ImageIcon circleIcon = new ImageIcon("images/blank.png");

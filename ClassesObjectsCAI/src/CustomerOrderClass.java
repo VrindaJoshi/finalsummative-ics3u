@@ -102,7 +102,7 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 		
 		if (e.getSource() == nextStep) {
 			dispose();
-			Board.takenOrder = true;
+			ActivityClass.takenOrder = true;
 			//changeScreen();
 		}
 

@@ -429,7 +429,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		JLabel textLabelTwo = new JLabel("Feel free to add in any other attributes of a city that you can think of!");
 
 		// set up text labels
-		textLabelOne.setBounds(50, 50, 600, 50);
+		textLabelOne.setBounds(50, 50, 800, 50);
 		textLabelOne.setLayout(null);
 		textLabelOne.setFont(MainMenuClass.inter.deriveFont(15f));
 		panelArray[9].add(textLabelOne);
@@ -512,7 +512,7 @@ public class EducationClass extends JFrame implements ActionListener {
 	private void seventhSlide() {
 		// create text labels
 		JLabel textLabelOne = new JLabel(
-				"<html>Back on slide X, we learned that every instance of an object is familiar with its own instance variables. We are able to get and set the values of the instance variables, through the instance. To do so, we can use get methods, or set methods.\r\n"
+				"<html>Back on slide 4, we learned that every instance of an object is familiar with its own instance variables. We are able to get and set the values of the instance variables, through the instance. To do so, we can use get methods, or set methods.\r\n"
 						+ "</html>");
 
 		JLabel textLabelTwo = new JLabel(

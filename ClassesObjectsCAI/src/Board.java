@@ -14,8 +14,11 @@ import javax.sound.sampled.*;
 // class
 @SuppressWarnings("serial")
 public class Board extends JFrame implements KeyListener {
+	
+	static final Color PINK = Color.decode("#FFE1E1");
 
 	// panel for board
+
 	private JPanel mazePanel = new JPanel();
 
 	// creates the maze array (25 rows, 27 columns)
@@ -24,18 +27,16 @@ public class Board extends JFrame implements KeyListener {
 	// creates the pacman mover
 	static Mover user;
 
+	private boolean servedCustomer = false;
+
 	// array of customers
 	private Mover[] customerArray = new Mover[1];
 
-	private boolean currentCakeDone = false;
-	static boolean takenOrder = false;
-
-	static int currentStance = 1;
 
 	// constructor method - this method constructs the board
 	public Board() {
 
-		setSize(40 * 18, 40 * 14);
+		setSize(40 * 19, 40 * 15);
 		setName("All About Objects+ + Classes");
 
 		// used to save memory
@@ -54,13 +55,11 @@ public class Board extends JFrame implements KeyListener {
 
 		// set background color base on theme chose in intro panel
 		Color bkgdColour = (Color.WHITE);
-
-		// setBackground(bkgdColour);
-
+		
 		// set up panel
 		mazePanel.setLayout(new GridLayout(13, 17));
 		mazePanel.setBackground(bkgdColour);
-		mazePanel.setBounds(0, 0, 40 * 18, 40 * 14);
+		mazePanel.setBounds(80, 20, 40*15, 40*13);
 
 		add(mazePanel);
 
@@ -75,15 +74,16 @@ public class Board extends JFrame implements KeyListener {
 		// set row to 0
 		int row = 0;
 
-		// initialize new file
 		Scanner inputFile;
 
 		// try the file, or catch the errors
 		try {
-
 			// set file to import
-
-			inputFile = new Scanner(new File("mazes/store.txt"));
+			if (ActivityClass.takenOrder == true) {
+				inputFile = new Scanner(new File("mazes/kitchenStore.txt"));
+			} else {
+				inputFile = new Scanner(new File("mazes/store.txt"));
+			}
 
 			// reads every row
 			while (inputFile.hasNext()) {
@@ -218,11 +218,34 @@ public class Board extends JFrame implements KeyListener {
 					currentCell.setIcon(Icons.CUSTOMER[3]);
 				}
 
-				if (mover == user && currentCell.getItem() == 'M' && takenOrder == false) {
+				if (mover == user && currentCell.getItem() == 'M') {
 					new CustomerOrderClass(ActivityClass.currentCake);
 				}
 
-				if (mover == user && currentCell.getItem() == 'K' && takenOrder == true) {
+				if (nextCell.getItem() == 'E' && mover != user) {
+					currentCell.setIcon(Icons.BLANK);
+				}
+
+				// if serving customer..
+				if (mover == user && currentCell.getItem() == 'S') {
+					if (gradeCake())
+						JOptionPane.showMessageDialog(mazePanel, "They loved your cake! ", "!!!",
+								JOptionPane.INFORMATION_MESSAGE);
+					else {
+						JOptionPane.showMessageDialog(mazePanel, "Your cake was a little disapointing... ", "!!!",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+
+					mazeArray[2][7].setIcon(Icons.BLANK);
+
+					JOptionPane.showMessageDialog(mazePanel, "Let's go back to the kitchen! ", "!!!",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+
+				if (mover == user && currentCell.getItem() == 'K' && ActivityClass.takenOrder == true) {
+					if (ActivityClass.currentCake == 4) {
+						ActivityClass.finishedGame = true;
+					}
 					dispose();
 
 				}
@@ -234,6 +257,15 @@ public class Board extends JFrame implements KeyListener {
 		}
 
 	}// end of priv method
+
+	private boolean gradeCake() {
+
+		servedCustomer = true;
+		ActivityClass.perfectCakes++;
+
+		return true;
+
+	}
 
 	// checks to make sure the customer and user do not bump into each other
 	private boolean noBumping(int dRow, int dCol) {
