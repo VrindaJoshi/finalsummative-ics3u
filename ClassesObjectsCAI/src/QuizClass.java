@@ -81,18 +81,16 @@ public class QuizClass extends JFrame implements ActionListener {
 				timeArray[0] = (timeArray[2]/60000)%60;
 				timeArray[1] = (timeArray[2]/1000)%60;
 				
-				while (timeArray[0] != 0 && timeArray[1] != 0) {
-					if (timeArray[1] < 10)
-						timerLabel.setText(timeArray[0]+":0"+timeArray[1]);
-					else
-						timerLabel.setText(timeArray[0]+":"+timeArray[1]);
+				if (timeArray[1] < 10)
+					timerLabel.setText(timeArray[0]+":0"+timeArray[1]);
+				else
+					timerLabel.setText(timeArray[0]+":"+timeArray[1]);
+				
+				if (timeArray[0] == 0 && timeArray[1] == 0) {
+					timer.stop();;
 				}
 				
-				JOptionPane.showMessageDialog(mainPanel,
-						"Times up! ", "!!!",
-						JOptionPane.INFORMATION_MESSAGE);
 				
-				gradeTest();
 			}
 
 			

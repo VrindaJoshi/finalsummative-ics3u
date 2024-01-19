@@ -1,6 +1,4 @@
 
-// SEE IF YOU CAN CHANGE THE SLIDE USING THE KEYBOARD
-
 // imports
 import java.awt.*;
 import java.awt.event.*;
@@ -11,11 +9,8 @@ import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-// class
+// EDUCATION CLASS: slide show
 public class EducationClass extends JFrame implements ActionListener {
-
-	// fonts
-	//
 
 	// colors
 	static final Color BEIGE = new Color(227, 228, 219);
@@ -26,9 +21,9 @@ public class EducationClass extends JFrame implements ActionListener {
 	static JInternalFrame[] checkpointArray = new JInternalFrame[3]; // array of internal frames
 	static int currentSlide = 0; // changing value of the current slide
 
+	// panels
 	private JPanel mainPanel = new JPanel();
-
-	private JPanel topPanel = new JPanel();
+	private JPanel topPanel = new JPanel(); // over progress bar
 
 	// panel for buttons at the bottom
 	private JPanel buttonPanel = new JPanel();
@@ -39,16 +34,16 @@ public class EducationClass extends JFrame implements ActionListener {
 	private JButton backButton = new JButton("<"); // back button to go to previous slide
 	private JButton finishButton = new JButton("finish"); // finish button to end slideshow
 
+	// booleans, to check whether to pop up checkpoint
 	private boolean doneCheckpointOne = false;
 	private boolean doneCheckpointTwo = false;
-	private boolean doneCheckpointThree = false;
 
 	// constructor
 	public EducationClass() {
 
 		// set size of frame
 		setSize(1366, 766);
-		setName("All About Objects+ + Classes");
+		setName("All About Objects + Classes");
 
 		// set up main panel
 		mainPanel.setBounds(0, 0, 1366, 766);
@@ -59,6 +54,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		// set up panel with JProgressBar
 		setTopPanel();
 
+		// set menu bar
 		setMenuBar();
 
 		// initials panelArray method
@@ -77,6 +73,7 @@ public class EducationClass extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	// menu bar
 	private void setMenuBar() {
 
 		JMenuBar menuBar = new JMenuBar();
@@ -87,7 +84,6 @@ public class EducationClass extends JFrame implements ActionListener {
 		JMenu mQuiz = new JMenu("Quiz");
 
 		// menu bar - used like buttons
-
 		mMenu.addMenuListener(new MenuListener() {
 			@Override
 			public void menuSelected(MenuEvent e) {
@@ -216,6 +212,8 @@ public class EducationClass extends JFrame implements ActionListener {
 			panelArray[index].setLayout(null);
 		}
 
+		// initialize each panel
+		
 		firstSlide();
 
 		secondSlide();
@@ -738,8 +736,10 @@ public class EducationClass extends JFrame implements ActionListener {
 
 	}
 
+	// change slide back and forth method
 	private void changeSlide() {
 
+		// show checkpoint if they have not been done yet
 		if (currentSlide == 6 && doneCheckpointOne == false) {
 			JOptionPane.showInputDialog(mainPanel,
 					"Create a friend for your avatar! Your avatar’s friend is Sally, a 18 year old girl with black hair. (name the instance sallyAvatar)\r\n"

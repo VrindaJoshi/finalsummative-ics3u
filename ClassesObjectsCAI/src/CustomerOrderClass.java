@@ -1,6 +1,4 @@
 
-//this class pops up when user creates their avatar
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -10,20 +8,20 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
+// CUSTOMER ORDER CLASS: pops up when you get user order
 public class CustomerOrderClass extends JFrame implements ActionListener{
 
 	// colors
 	static final Color PINK = Color.decode("#FFE1E1");
-	static final Color GRAY = new Color(205, 205, 205);
 
 	// static values
-	static Avatar userAvatar;
 	static int customerNumber;
 
+	// panels
 	private JPanel mainPanel = new JPanel();
 	private JPanel topPanel = new JPanel();
 
-	//first screen elements
+	// screen elements
 	private JLabel welcomeLabel;
 	private JButton nextStep = new JButton("to the kitchen!");
 	private JLabel lady = new JLabel(new ImageIcon(new ImageIcon("images/lady.png").getImage().getScaledInstance(100, 115, java.awt.Image.SCALE_SMOOTH)));
@@ -31,19 +29,16 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 	private JLabel order;
 	private JLabel speechText;
 	
-	//second screen elements
-	private JLabel constLabel = new JLabel("here's the constuctor for the cake class");
-	private JLabel cakeConstructor = new JLabel(new ImageIcon("images/cake.png"));
-	
-	
 	private String[] number = {"first", "second", "last"};
 	
-	
+	// constructor
 	public CustomerOrderClass(int customerNumber) {
 
+		// frame details
 		setSize(783, 533);
 		setName("All About Objects + Classes");
 		
+		// set text
 		welcomeLabel = new JLabel("customer "+customerNumber);
 		speechText = new JLabel("<html>your "+number[customerNumber-1]+" customer<br> requested the following:</html>");
 		order = new JLabel(new ImageIcon(new ImageIcon("images/orders/order"+customerNumber+".png").getImage().getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH)));
@@ -54,12 +49,14 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 		mainPanel.setLayout(null);
 		add(mainPanel);
 
+		// set panel
 		setTopPanel();
 
 		setLocationRelativeTo(null); // sets pop-up in center of screen
 		setVisible(true);
 	}
 
+	// panel
 	private void setTopPanel() {
 
 		// set up blank panel
@@ -81,6 +78,7 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 		nextStep.addActionListener(this);
 		topPanel.add(nextStep);
 		
+		// elements
 		lady.setBounds(40, 230, 100, 115);
 		topPanel.add(lady);
 		
@@ -97,6 +95,7 @@ public class CustomerOrderClass extends JFrame implements ActionListener{
 		
 	}
 
+	// action listener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
