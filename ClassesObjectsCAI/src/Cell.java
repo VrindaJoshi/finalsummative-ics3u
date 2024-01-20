@@ -2,6 +2,8 @@
 // template class for the cell object
 
 // import classes
+import java.awt.Color;
+
 import javax.swing.*;
 
 // class
@@ -36,8 +38,9 @@ public class Cell extends JLabel{
 	private void setCodeIcon() {
 		
 		// DEFAULT
-		if (item == 'W') 
+		if (item == 'W') {
 			 setIcon(Icons.COUNTER);
+			 setBorder(BorderFactory.createLineBorder(Board.PINK));}
 		else if (item == 'B') 
 			 setIcon(Icons.COMPUTER);
 		else if (item == 'U') 

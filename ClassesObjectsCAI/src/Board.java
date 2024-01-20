@@ -36,8 +36,10 @@ public class Board extends JFrame implements KeyListener {
 	// constructor method - this method constructs the board
 	public Board() {
 
-		setSize(40 * 19, 40 * 15);
-		setName("All About Objects+ + Classes");
+		setSize(40 * 19, 40 * 17);
+		setName("All About Objects + Classes");
+		getContentPane().setBackground(PINK);
+
 
 		// used to save memory
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +61,9 @@ public class Board extends JFrame implements KeyListener {
 		// set up panel
 		mazePanel.setLayout(new GridLayout(13, 17));
 		mazePanel.setBackground(bkgdColour);
-		mazePanel.setBounds(80, 20, 40*15, 40*13);
+		mazePanel.setBounds(80, 60, 40*15-10, 40*13-15);
+		mazePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
 
 		add(mazePanel);
 
@@ -99,9 +103,9 @@ public class Board extends JFrame implements KeyListener {
 					mazeArray[row][column] = new Cell(lineArray[column]);
 
 					// if the column is pacman, put pac man there
-					if (lineArray[column] == 'W')
-						mazeArray[row][column].setBorder(BorderFactory.createLineBorder(Color.decode("#98343c")));
-
+					if (lineArray[column] == 'W') {
+						mazeArray[row][column].setBorder(BorderFactory.createLineBorder(PINK));
+					}
 					else if (lineArray[column] == 'U') {
 						user = new Mover(row, column);
 						user.setIcon(Icons.USER[0]);
@@ -228,7 +232,7 @@ public class Board extends JFrame implements KeyListener {
 
 				// if serving customer..
 				if (mover == user && currentCell.getItem() == 'S') {
-					if (gradeCake())
+					if (ActivityClass.gradeCake)
 						JOptionPane.showMessageDialog(mazePanel, "They loved your cake! ", "!!!",
 								JOptionPane.INFORMATION_MESSAGE);
 					else {
@@ -257,15 +261,6 @@ public class Board extends JFrame implements KeyListener {
 		}
 
 	}// end of priv method
-
-	private boolean gradeCake() {
-
-		servedCustomer = true;
-		ActivityClass.perfectCakes++;
-
-		return true;
-
-	}
 
 	// checks to make sure the customer and user do not bump into each other
 	private boolean noBumping(int dRow, int dCol) {

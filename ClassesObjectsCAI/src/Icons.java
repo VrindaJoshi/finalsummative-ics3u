@@ -11,12 +11,7 @@ public class Icons {
 	// icons that do not change
 	public static final ImageIcon COMPUTER = new ImageIcon("images/images/comp.png");
 	public static final ImageIcon BLANK = new ImageIcon("images/images/Black.bmp");
-	public static final ImageIcon DOOR = new ImageIcon("images/images/Black.bmp");
-	public static final ImageIcon SKULL = new ImageIcon("images/images/Skull.bmp");
-	public static final ImageIcon CHERRY = new ImageIcon("images/images/Cherry.bmp");
-	public static final ImageIcon BLUE = new ImageIcon("images/images/BlueGhost.bmp");
-	public static final ImageIcon GATE = new ImageIcon("images/images/Black.bmp");
-	public static final ImageIcon COUNTER = new ImageIcon("images/images/counter.png");
+	public static final ImageIcon COUNTER = new ImageIcon("images/images/pink.png");
 	
 	// pac man array for the different directions
 	public static final ImageIcon[] USER = {

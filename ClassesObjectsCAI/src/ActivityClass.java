@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 public class ActivityClass extends JFrame implements ActionListener {
 
@@ -29,7 +31,8 @@ public class ActivityClass extends JFrame implements ActionListener {
 	static boolean takenOrder = false;
 
 	private static JLabel gameIntro = new JLabel(
-			"<html>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</html>");
+			"<html>OBJECTIVE: You've been hired by <i>Cake Instances</i>, the new cafe in town! You've been hired as a cashier and baker, and will have to take orders and make cakes. The cafe has a great reputation, so make sure to make the best cakes in town! The cafe is a bit big, so you will have to find your way around yourself. <br><br>"
+					+ "HOW TO PLAY: Create instances of the <i>Cake</i> class, based on the cakes the customers want. Use the arrow keys to move around the store.</html>");
 
 	// second screen elements
 	private static JLabel constLabel = new JLabel(
@@ -55,7 +58,14 @@ public class ActivityClass extends JFrame implements ActionListener {
 	private JComponent panel1 = makeTextPanel();
 	private JComponent panel2 = makeTextPanel();
 
+	private String[] answerArray = {
+			"Cake cake1 = new Cake(\"Vanilla\", \"Strawberry\", \"Cream Cheese\", \"Pastel Pink\", 2, \"Baby Shower\", true);",
+			"Cake cake2 = new Cake(\"Chocolate\", \"Caramel\", \"Italian Buttercream\", \"Periwinkle Blue\", 3, \"Birthday\", true);",
+			"Cake cake2 = new Cake(\"Lemon\", \"Vanilla\", \"Lemon Buttercream\", \"Yellow\", 3, \"50th Anniverary\", true);" };
+
 	private JLabel filler = new JLabel("here you will find your customer's order");
+
+	static boolean gradeCake;
 
 	// constructor method to set up frame
 	public ActivityClass() {
@@ -69,6 +79,8 @@ public class ActivityClass extends JFrame implements ActionListener {
 
 		// intro screen
 		setIntro();
+
+		setMenuBar();
 
 		// key listener for board so pacman can move
 		setLayout(null);
@@ -101,8 +113,8 @@ public class ActivityClass extends JFrame implements ActionListener {
 		topPanel.add(welcomeLabel);
 
 		// game intro
-		gameIntro.setBounds(80, 200, 450, 350);
-		gameIntro.setFont(MainMenuClass.inter.deriveFont(20f));
+		gameIntro.setBounds(80, 150, 450, 350);
+		gameIntro.setFont(MainMenuClass.inter.deriveFont(15f));
 		topPanel.add(gameIntro);
 
 		// button
@@ -163,7 +175,7 @@ public class ActivityClass extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				//
 				JOptionPane.showMessageDialog(topPanel,
-						"Some one just entered the store! Looks like you got your first customer! ", "!!!",
+						"Someone just entered the store! Looks like you got your first customer! ", "!!!",
 						JOptionPane.INFORMATION_MESSAGE);
 				setCustomer();
 				welcomeLabel.setText("make your " + whichOne[currentCake - 1] + " customer's order!");
@@ -234,9 +246,17 @@ public class ActivityClass extends JFrame implements ActionListener {
 			nextStep2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+
+					// check cake
+					if (answerArray[currentCake - 1].equals(answerField.getText())) {
+						gradeCake = true;
+						perfectCakes++;
+					} else
+						gradeCake = false;
 					JOptionPane.showMessageDialog(topPanel, "Time to serve your customer!", "Finished Baking",
 							JOptionPane.INFORMATION_MESSAGE);
 					welcomeBackPanel();
+					answerField.setText(""); // clears the text field for next round
 					new Board();
 				}
 			});
@@ -245,6 +265,81 @@ public class ActivityClass extends JFrame implements ActionListener {
 
 		topPanel.revalidate();
 		topPanel.repaint();
+	}
+
+	// menu bar
+	private void setMenuBar() {
+
+		JMenuBar menuBar = new JMenuBar();
+
+		JMenu mMenu = new JMenu("Home");
+		JMenu mEdu = new JMenu("Learn");
+		JMenu mActivity = new JMenu("Play");
+		JMenu mQuiz = new JMenu("Quiz");
+
+		// menu bar - used like buttons
+		mMenu.addMenuListener(new MenuListener() {
+			@Override
+			public void menuSelected(MenuEvent e) {
+				new MainMenuClass();
+				dispose();
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+
+		mEdu.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				new EducationClass();
+				dispose();
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+		
+		mQuiz.addMenuListener(new MenuListener() {
+			public void menuSelected(MenuEvent e) {
+				if (CAIApp.activityDone == true) {
+					new QuizClass();
+					dispose();
+				} else
+					JOptionPane.showMessageDialog(topPanel, "Complete the activty to take the quiz!",
+							"Before you move on..", JOptionPane.WARNING_MESSAGE);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+
+		menuBar.add(mMenu);
+		menuBar.add(mEdu);
+		menuBar.add(mActivity);
+		menuBar.add(mQuiz);
+
+		setJMenuBar(menuBar);
 	}
 
 	private void welcomeBackPanel() {
@@ -341,7 +436,7 @@ public class ActivityClass extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		// unused
 
 	}
 
